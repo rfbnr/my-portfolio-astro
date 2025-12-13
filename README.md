@@ -102,7 +102,7 @@ src/
 | **Hooks**      | Business logic         | `useProjects()` with filtering   |
 | **Components** | Presentation only      | Import data, render UI           |
 
-### How to Add New Data
+<!-- ### How to Add New Data
 
 1. **Define type** in `src/types/`:
 
@@ -132,7 +132,7 @@ export const blogPosts: BlogPost[] = [
 ```typescript
 import { blogPosts } from "@/data";
 import type { BlogPost } from "@/types";
-```
+``` -->
 
 ## 🎨 Design System
 
@@ -153,7 +153,7 @@ import type { BlogPost } from "@/types";
 - **Space Grotesk** - Headings and display text
 - **JetBrains Mono** - Code blocks
 
-### UI Components
+<!-- ### UI Components
 
 | Component       | Description                                                        |
 | --------------- | ------------------------------------------------------------------ |
@@ -177,7 +177,7 @@ import type { BlogPost } from "@/types";
 | `LiquidBackground` | Animated gradient background                |
 | `ScrollIndicator`  | Scroll down indicator                       |
 | `Floating`         | Floating animation wrapper                  |
-| `Magnetic`         | Mouse-following magnetic effect             |
+| `Magnetic`         | Mouse-following magnetic effect             | -->
 
 ## 🚀 Getting Started
 
