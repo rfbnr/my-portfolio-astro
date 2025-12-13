@@ -1,4 +1,4 @@
-# 🚀 Ridwan.dev Portfolio
+# 🚀 Ridwan Febnur AR Portfolio
 
 A modern, dark-themed portfolio website built with **Astro** and **React**, featuring stunning glassmorphism design, smooth animations, and a liquid background effect. Built with **Clean Architecture** principles for maintainability and scalability.
 
@@ -91,7 +91,7 @@ src/
     └── global.css            # Design tokens & global styles
 ```
 
-## 🏗️ Architecture Principles
+<!-- ## 🏗️ Architecture Principles
 
 ### Separation of Concerns
 
@@ -100,7 +100,7 @@ src/
 | **Types**      | Interface definitions  | `Project`, `Skill`, `NavLink`    |
 | **Data**       | Data sources & helpers | `projects`, `getProjectBySlug()` |
 | **Hooks**      | Business logic         | `useProjects()` with filtering   |
-| **Components** | Presentation only      | Import data, render UI           |
+| **Components** | Presentation only      | Import data, render UI           | -->
 
 <!-- ### How to Add New Data
 
@@ -237,7 +237,7 @@ npm run preview
 | `/experiments/[slug]` | Experiment detail page                                          |
 | `/contact`            | Contact form                                                    |
 
-## 🔧 Path Aliases
+<!-- ## 🔧 Path Aliases
 
 The project uses TypeScript path aliases for clean imports:
 
@@ -247,7 +247,7 @@ import { FadeIn } from "@/components/motion";
 import { cn } from "@/lib/utils";
 import { projects } from "@/data";
 import type { Project } from "@/types";
-```
+``` -->
 
 ## 📱 Responsive Breakpoints
 
