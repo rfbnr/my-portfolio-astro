@@ -1,0 +1,114 @@
+# ===========================
+# Build & Generated Output
+# ===========================
+dist/
+.astro/
+.agent/
+*.tsbuildinfo
+
+# ===========================
+# Dependencies
+# ===========================
+node_modules/
+
+# ===========================
+# Environment Variables
+# ===========================
+.env
+.env.*
+!.env.example
+*.local
+
+# ===========================
+# Logs
+# ===========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ===========================
+# Editor & IDE
+# ===========================
+# VS Code (uncomment if you want to share settings)
+# .vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ===========================
+# OS-specific files
+# ===========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ===========================
+# Deployment & Hosting
+# ===========================
+.vercel/
+.netlify/
+.wrangler/
+
+# ===========================
+# Testing & Coverage
+# ===========================
+coverage/
+.nyc_output/
+*.lcov
+
+# ===========================
+# Cache & Temp
+# ===========================
+.cache/
+.turbo/
+.parcel-cache/
+.temp/
+.tmp/
+
+# ===========================
+# Package Manager Locks (optional)
+# Keep ONE of these, ignore others if switching package managers
+# ===========================
+# pnpm-lock.yaml
+# yarn.lock
+# bun.lockb
+
+# ===========================
+# Debug
+# ===========================
+.debug/
+
+# ===========================
+# Miscellaneous
+# ===========================
+*.pid
+*.seed
+*.pid.lock
+
+# Sentry Config File
+.sentryclirc

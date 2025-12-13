@@ -1,0 +1,286 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, ExternalLink, Briefcase, Filter } from "lucide-react";
+import { Badge, Card, SectionHeader, Button } from "@/components/ui";
+import {
+  FadeIn,
+  StaggerContainer,
+  StaggerItem,
+  LiquidBackground,
+} from "@/components/motion";
+import { cn } from "@/lib/utils";
+
+// Filter categories
+const categories = [
+  { id: "all", label: "All" },
+  { id: "mobile", label: "Mobile" },
+  { id: "web", label: "Web" },
+  { id: "enterprise", label: "Enterprise" },
+  { id: "experimental", label: "Experimental" },
+];
+
+// Demo projects data
+const projects = [
+  {
+    id: 1,
+    title: "Enterprise HRIS Platform",
+    slug: "enterprise-hris",
+    category: "enterprise",
+    tech: ["Flutter", "Laravel", "MySQL", "Firebase"],
+    description:
+      "Comprehensive human resource information system handling employee management, attendance, payroll, and performance reviews for 5000+ users.",
+    image: "/projects/hris.jpg",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Sales Force Automation",
+    slug: "sales-force-app",
+    category: "mobile",
+    tech: ["Flutter", "REST API", "SQLite", "Maps"],
+    description:
+      "Mobile-first sales tracking application with real-time location tracking, customer management, and offline-first architecture.",
+    image: "/projects/sales.jpg",
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "CRM Dashboard",
+    slug: "crm-dashboard",
+    category: "web",
+    tech: ["Next.js", "TypeScript", "PostgreSQL", "Chart.js"],
+    description:
+      "Interactive customer relationship management dashboard with advanced analytics and reporting capabilities.",
+    image: "/projects/crm.jpg",
+    featured: true,
+  },
+  {
+    id: 4,
+    title: "E-Commerce Mobile App",
+    slug: "ecommerce-app",
+    category: "mobile",
+    tech: ["Flutter", "Firebase", "Stripe", "Algolia"],
+    description:
+      "Full-featured e-commerce application with real-time inventory, payment processing, and personalized recommendations.",
+    image: "/projects/ecommerce.jpg",
+    featured: false,
+  },
+  {
+    id: 5,
+    title: "SSO Authentication System",
+    slug: "sso-system",
+    category: "enterprise",
+    tech: ["Laravel", "OAuth2", "Redis", "Docker"],
+    description:
+      "Centralized single sign-on system supporting multiple authentication providers and enterprise-grade security.",
+    image: "/projects/sso.jpg",
+    featured: false,
+  },
+  {
+    id: 6,
+    title: "Animation Playground",
+    slug: "animation-playground",
+    category: "experimental",
+    tech: ["Flutter", "Rive", "Lottie"],
+    description:
+      "Experimental project exploring advanced Flutter animations and micro-interactions for enhanced UX.",
+    image: "/projects/animation.jpg",
+    featured: false,
+  },
+];
+
+interface ProjectCardProps {
+  project: (typeof projects)[0];
+  index: number;
+}
+
+function ProjectCard({ project, index }: ProjectCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <StaggerItem>
+      <a href={`/projects/${project.slug}`}>
+        <Card
+          className="group relative overflow-hidden h-full"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}>
+          {/* Project Image / Placeholder */}
+          <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-dark-700 to-dark-800">
+            {/* Gradient placeholder */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/20 via-accent-purple/10 to-accent-cyan/20" />
+
+            {/* Project title overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-4xl font-bold text-white/10">
+                {project.title.charAt(0)}
+              </span>
+            </div>
+
+            {/* Hover overlay */}
+            <motion.div
+              className="absolute inset-0 bg-black/60 flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.3 }}>
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{
+                  scale: isHovered ? 1 : 0.8,
+                  opacity: isHovered ? 1 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+                className="w-12 h-12 rounded-full bg-accent-blue flex items-center justify-center">
+                <ArrowUpRight size={24} className="text-white" />
+              </motion.div>
+            </motion.div>
+
+            {/* Featured badge */}
+            {project.featured && (
+              <div className="absolute top-3 right-3">
+                <Badge variant="tech">Featured</Badge>
+              </div>
+            )}
+          </div>
+
+          {/* Content */}
+          <div className="space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent-blue transition-colors">
+                {project.title}
+              </h3>
+              <ExternalLink
+                size={16}
+                className="text-text-muted shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
+              />
+            </div>
+
+            {/* Tech tags */}
+            <div className="flex flex-wrap gap-2">
+              {project.tech.slice(0, 3).map((tech) => (
+                <span
+                  key={tech}
+                  className="text-xs px-2 py-1 rounded-md bg-dark-700 text-text-muted">
+                  {tech}
+                </span>
+              ))}
+              {project.tech.length > 3 && (
+                <span className="text-xs px-2 py-1 rounded-md bg-dark-700 text-text-muted">
+                  +{project.tech.length - 3}
+                </span>
+              )}
+            </div>
+
+            {/* Description */}
+            <p className="text-sm text-text-secondary line-clamp-2">
+              {project.description}
+            </p>
+          </div>
+        </Card>
+      </a>
+    </StaggerItem>
+  );
+}
+
+export default function ProjectsPage() {
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filteredProjects = projects.filter(
+    (project) => activeFilter === "all" || project.category === activeFilter,
+  );
+
+  return (
+    <div className="relative">
+      <LiquidBackground />
+
+      {/* Header */}
+      <section className="pt-32 pb-12">
+        <div className="section-container">
+          <FadeIn>
+            <Badge variant="tech" className="mb-4">
+              <Briefcase size={14} />
+              Portfolio
+            </Badge>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
+              Featured Projects
+            </h1>
+
+            <p className="text-xl text-text-secondary max-w-2xl">
+              A selection of my recent work building production-ready
+              applications across mobile, web, and enterprise platforms.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Filter Bar */}
+      <section className="pb-8">
+        <div className="section-container">
+          <FadeIn delay={0.2}>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <motion.button
+                  key={category.id}
+                  onClick={() => setActiveFilter(category.id)}
+                  className={cn(
+                    "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300",
+                    activeFilter === category.id
+                      ? "bg-accent-blue text-white"
+                      : "glass glass-hover text-text-secondary hover:text-text-primary",
+                  )}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}>
+                  {category.label}
+                </motion.button>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Projects Grid */}
+      <section className="py-12">
+        <div className="section-container">
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </AnimatePresence>
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20">
+        <div className="section-container">
+          <FadeIn>
+            <Card className="text-center py-12 px-6">
+              <div className="max-w-2xl mx-auto">
+                <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-4">
+                  Interested in working together?
+                </h2>
+                <p className="text-text-secondary mb-8">
+                  I&apos;m always open to discussing new projects, creative
+                  ideas, or opportunities to be part of your vision.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <a href="/contact">
+                    <Button variant="primary" glow>
+                      Get in Touch
+                    </Button>
+                  </a>
+                  <a href="/about">
+                    <Button variant="secondary">Learn More About Me</Button>
+                  </a>
+                </div>
+              </div>
+            </Card>
+          </FadeIn>
+        </div>
+      </section>
+    </div>
+  );
+}

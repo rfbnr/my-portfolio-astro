@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ExperimentDetailPage from "@/components/sections/ExperimentDetailPage";
+
+// Define all experiment slugs for static generation
+export function getStaticPaths() {
+  const experiments = [
+    { slug: "liquid-morphism-cards" },
+    { slug: "offline-sync-engine" },
+    { slug: "gesture-navigation" },
+    { slug: "state-machine-visualizer" },
+    { slug: "api-mock-generator" },
+    { slug: "micro-interactions" },
+  ];
+  
+  return experiments.map(({ slug }) => ({
+    params: { slug },
+  }));
+}
+---
+
+<Layout title="Experiment | Ridwan.dev" description="Technical deep-dive into R&D experiments and explorations.">
+  <ExperimentDetailPage client:idle />
+</Layout>

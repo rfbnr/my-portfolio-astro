@@ -1,0 +1,10 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { ProjectsGrid } from "@/components/sections/ProjectsGrid";
+---
+
+<Layout>
+  <HeroSection client:idle />
+  <ProjectsGrid client:idle limit={3} />
+</Layout>

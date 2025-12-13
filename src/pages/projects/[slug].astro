@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaseStudyPage from "@/components/sections/CaseStudyPage";
+
+// Define all project slugs for static generation
+export function getStaticPaths() {
+  const projects = [
+    { slug: "enterprise-hris" },
+    { slug: "sales-force-app" },
+    { slug: "crm-dashboard" },
+    { slug: "ecommerce-app" },
+    { slug: "sso-system" },
+    { slug: "animation-playground" },
+  ];
+  
+  return projects.map(({ slug }) => ({
+    params: { slug },
+  }));
+}
+---
+
+<Layout title="Case Study | Ridwan.dev" description="Enterprise HRIS Platform - Comprehensive human resource information system.">
+  <CaseStudyPage client:idle />
+</Layout>
