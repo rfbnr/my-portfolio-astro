@@ -1,7 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Code2, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Download,
+  Code2,
+  Sparkles,
+  Briefcase,
+  Layers,
+  Award,
+  Users,
+  Rocket,
+  Lightbulb,
+} from "lucide-react";
 import { Button, Badge, Card, GradientText } from "@/components/ui";
 import {
   FadeIn,
@@ -12,9 +23,22 @@ import {
   Floating,
   Magnetic,
 } from "@/components/motion";
-import { techStack, heroMetrics } from "@/data";
+import type { LucideIcon } from "lucide-react";
+import type { HeroTechStack, HeroMetric, HeroSectionProps } from "@/types";
 
-export function HeroSection() {
+// Icon mapping for dynamic icon loading (client-side)
+const iconMap: Record<string, LucideIcon> = {
+  Code2,
+  Sparkles,
+  Briefcase,
+  Layers,
+  Award,
+  Users,
+  Rocket,
+  Lightbulb,
+};
+
+export function HeroSection({ techStack, heroMetrics }: HeroSectionProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
       <LiquidBackground />
@@ -104,7 +128,7 @@ export function HeroSection() {
 
                       {/* Avatar illustration */}
                       <img
-                        src="/images/avatar.png"
+                        src="/images/avatar-hoodie.png"
                         alt="Developer Avatar"
                         className="absolute inset-0 w-full h-full object-cover"
                       />
@@ -154,7 +178,12 @@ export function HeroSection() {
                 transition={{ delay: 0.8 + index * 0.1 }}>
                 <Card className="text-center py-6">
                   <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-accent-blue/10 flex items-center justify-center">
-                    <metric.icon size={24} className="text-accent-blue" />
+                    {(() => {
+                      const IconComponent = iconMap[metric.icon] || Code2;
+                      return (
+                        <IconComponent size={24} className="text-accent-blue" />
+                      );
+                    })()}
                   </div>
                   <div className="text-2xl md:text-3xl font-bold text-text-primary mb-1">
                     {metric.value}

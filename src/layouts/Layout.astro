@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
+import { getNavigation, getSocialLinks, getSiteConfig } from "@/lib/content";
 
 interface Props {
   title?: string;
@@ -12,6 +13,13 @@ const {
   title = "Ridwan.dev | Mobile & Web Developer",
   description = "Mobile-first engineer focused on functional, elegant, and production-ready solutions. Specializing in Flutter & cross-platform development.",
 } = Astro.props;
+
+// Fetch navigation and footer data
+const navigationData = await getNavigation();
+const navLinks = navigationData.navLinks ?? [];
+const footerLinks = navigationData.footerLinks ?? [];
+const { socialLinks } = await getSocialLinks();
+const siteConfig = await getSiteConfig();
 ---
 
 <!doctype html>
@@ -30,10 +38,15 @@ const {
     <title>{title}</title>
   </head>
   <body class="bg-background text-foreground font-sans">
-    <Navigation client:idle />
+    <Navigation client:idle navLinks={navLinks} />
     <main>
       <slot />
     </main>
-    <Footer client:visible />
+    <Footer 
+      client:visible 
+      socialLinks={socialLinks} 
+      footerLinks={footerLinks}
+      siteConfig={siteConfig}
+    />
   </body>
 </html>

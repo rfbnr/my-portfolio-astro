@@ -2,9 +2,23 @@
 import Layout from "../layouts/Layout.astro";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProjectsGrid } from "@/components/sections/ProjectsGrid";
+import { getProjects, getHeroData, projectCategories } from "@/lib/content";
+
+// Fetch data from content collections
+const projects = await getProjects();
+const heroData = await getHeroData();
 ---
 
 <Layout>
-  <HeroSection client:idle />
-  <ProjectsGrid client:idle limit={3} />
+  <HeroSection 
+    client:visible 
+    techStack={heroData.techStack} 
+    heroMetrics={heroData.heroMetrics} 
+  />
+  <ProjectsGrid 
+    client:visible 
+    projects={projects} 
+    categories={projectCategories}
+    limit={3} 
+  />
 </Layout>

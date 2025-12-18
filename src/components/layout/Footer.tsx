@@ -1,11 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
+import {
+  Heart,
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  Globe,
+  MessageCircle,
+} from "lucide-react";
 import { Divider } from "@/components/ui";
-import { socialLinks, footerLinks, siteConfig } from "@/data";
+import type { LucideIcon } from "lucide-react";
+import type { FooterProps } from "@/types";
 
-export function Footer() {
+// Icon mapping for dynamic icon loading (client-side)
+const iconMap: Record<string, LucideIcon> = {
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  Globe,
+  MessageCircle,
+  Heart,
+};
+
+export function Footer({ socialLinks, footerLinks, siteConfig }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -23,7 +43,8 @@ export function Footer() {
               </span>
             </a>
             <p className="text-text-secondary max-w-sm mb-6">
-              {siteConfig.description}
+              {siteConfig.description ||
+                "Mobile-first engineer focused on functional, elegant, and production-ready solutions."}
             </p>
 
             {/* Social Links */}
@@ -37,7 +58,10 @@ export function Footer() {
                   className="w-10 h-10 rounded-lg glass glass-hover flex items-center justify-center text-text-secondary hover:text-accent-blue transition-colors"
                   whileHover={{ scale: 1.1, y: -2 }}
                   aria-label={social.label}>
-                  <social.icon size={18} />
+                  {(() => {
+                    const IconComponent = iconMap[social.icon] || Globe;
+                    return <IconComponent size={18} />;
+                  })()}
                 </motion.a>
               ))}
             </div>
@@ -69,7 +93,8 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-muted">
           <p>
-            © {currentYear} {siteConfig.fullName}. All rights reserved.
+            © {currentYear} {siteConfig.fullName || "Ridwan Febnur Asri"}. All
+            rights reserved.
           </p>
           <p className="flex items-center gap-1">
             Crafted with <Heart size={14} className="text-accent-rose" /> using
