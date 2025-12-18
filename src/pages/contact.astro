@@ -1,8 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ContactPage from "@/components/sections/ContactPage";
+import { getSocialLinks } from "@/lib/content";
+
+// Fetch data from content collections
+const { socialLinks, contactInfo } = await getSocialLinks();
 ---
 
 <Layout title="Contact | Ridwan.dev" description="Get in touch with Ridwan Febnur Asri for collaboration opportunities.">
-  <ContactPage client:idle />
+  <ContactPage 
+    client:visible 
+    socialLinks={socialLinks}
+    contactInfo={contactInfo}
+  />
 </Layout>

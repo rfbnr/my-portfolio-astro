@@ -2,17 +2,46 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Calendar, MessageSquare } from "lucide-react";
-import { Button, Card, SectionHeader, GradientText } from "@/components/ui";
+import {
+  Send,
+  Calendar,
+  MessageSquare,
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  MapPin,
+  Globe,
+  MessageCircle,
+} from "lucide-react";
+import { Button, Card, GradientText } from "@/components/ui";
 import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
   LiquidBackground,
 } from "@/components/motion";
-import { socialLinks, contactInfo } from "@/data";
+import type { LucideIcon } from "lucide-react";
+import type { SocialLink, ContactInfo, ContactPageProps } from "@/types";
 
-export default function ContactPage() {
+// Icon mapping for dynamic icon loading (client-side)
+const iconMap: Record<string, LucideIcon> = {
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  MapPin,
+  Globe,
+  MessageCircle,
+  Calendar,
+  MessageSquare,
+  Send,
+};
+
+export default function ContactPage({
+  socialLinks,
+  contactInfo,
+}: ContactPageProps) {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -221,7 +250,16 @@ export default function ContactPage() {
                     {contactInfo.map((info) => (
                       <div key={info.label} className="flex items-center gap-4">
                         <div className="w-10 h-10 rounded-lg bg-dark-700 flex items-center justify-center">
-                          <info.icon size={18} className="text-accent-blue" />
+                          {(() => {
+                            const IconComponent = iconMap[info.icon] || Mail;
+
+                            return (
+                              <IconComponent
+                                size={18}
+                                className="text-accent-blue"
+                              />
+                            );
+                          })()}
                         </div>
                         <div>
                           <p className="text-sm text-text-muted">
@@ -235,7 +273,6 @@ export default function ContactPage() {
                 </Card>
               </FadeIn>
 
-              {/* Social Links */}
               <FadeIn delay={0.3}>
                 <Card>
                   <h3 className="text-lg font-semibold text-text-primary mb-6">
@@ -251,17 +288,23 @@ export default function ContactPage() {
                           className="flex items-center gap-4 p-3 rounded-lg bg-dark-800 hover:bg-dark-700 transition-colors group"
                           whileHover={{ x: 4 }}>
                           <div className="w-10 h-10 rounded-lg bg-dark-700 group-hover:bg-dark-600 flex items-center justify-center transition-colors">
-                            <social.icon
-                              size={18}
-                              className="text-text-secondary group-hover:text-accent-blue transition-colors"
-                            />
+                            {(() => {
+                              const IconComponent =
+                                iconMap[social.icon] || Globe;
+                              return (
+                                <IconComponent
+                                  size={18}
+                                  className="text-text-secondary group-hover:text-accent-blue transition-colors"
+                                />
+                              );
+                            })()}
                           </div>
                           <div className="flex-grow">
                             <p className="text-sm text-text-muted">
                               {social.label}
                             </p>
                             <p className="text-text-primary">
-                              {social.username}
+                              {social.username || social.label}
                             </p>
                           </div>
                         </motion.a>
@@ -272,7 +315,7 @@ export default function ContactPage() {
               </FadeIn>
 
               {/* Calendly CTA */}
-              <FadeIn delay={0.4}>
+              {/* <FadeIn delay={0.4}>
                 <Card className="text-center py-8 border-accent-blue/20">
                   <Calendar
                     size={32}
@@ -286,7 +329,7 @@ export default function ContactPage() {
                   </p>
                   <Button variant="outline">Book a Call</Button>
                 </Card>
-              </FadeIn>
+              </FadeIn> */}
             </div>
           </div>
         </div>
