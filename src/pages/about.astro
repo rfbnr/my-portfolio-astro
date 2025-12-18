@@ -1,8 +1,32 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import AboutPage from "@/components/sections/AboutPage";
+import { 
+  getSkills, 
+  getTimeline, 
+  getEducation, 
+  getCertifications, 
+  getValues,
+  levelColors 
+} from "@/lib/content";
+
+// Fetch data from content collections
+const { skillsByCategory, categories: skillCategories } = await getSkills();
+const timeline = await getTimeline();
+const education = await getEducation();
+const certifications = await getCertifications();
+const values = await getValues();
 ---
 
 <Layout title="About | Ridwan.dev" description="Learn more about Ridwan Febnur Asri - Mobile-first engineer focused on functional, elegant, and production-ready solutions.">
-  <AboutPage client:idle />
+  <AboutPage 
+    client:visible 
+    skills={skillsByCategory}
+    skillCategories={skillCategories}
+    levelColors={levelColors}
+    timeline={timeline}
+    education={education}
+    certifications={certifications}
+    values={values}
+  />
 </Layout>
