@@ -1,24 +1,34 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import ExperimentDetailPage from "@/components/sections/ExperimentDetailPage";
+import { getIcon, experimentTypeColors } from "@/lib/content";
 
-// Define all experiment slugs for static generation
-export function getStaticPaths() {
-  const experiments = [
-    { slug: "liquid-morphism-cards" },
-    { slug: "offline-sync-engine" },
-    { slug: "gesture-navigation" },
-    { slug: "state-machine-visualizer" },
-    { slug: "api-mock-generator" },
-    { slug: "micro-interactions" },
-  ];
+// Generate static paths from content collection
+export async function getStaticPaths() {
+  const experiments = await getCollection("experiments");
   
-  return experiments.map(({ slug }) => ({
-    params: { slug },
+  return experiments.map((entry) => ({
+    params: { slug: entry.id },
+    props: { experiment: entry },
   }));
 }
+
+const { experiment } = Astro.props;
+const experimentData = {
+  slug: experiment.id,
+  ...experiment.data,
+  // icon: getIcon(experiment.data.icon),
+};
 ---
 
-<Layout title="Experiment | Ridwan.dev" description="Technical deep-dive into R&D experiments and explorations.">
-  <ExperimentDetailPage client:idle />
+<Layout 
+  title={`${experimentData.title} | R&D | Ridwan.dev`} 
+  description={experimentData.description}
+>
+  <ExperimentDetailPage 
+    client:visible 
+    experiment={experimentData}
+    typeColors={experimentTypeColors}
+  />
 </Layout>

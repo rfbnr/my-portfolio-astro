@@ -1,19 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ExternalLink,
   Github,
   Calendar,
-  Tag,
   Lightbulb,
   Target,
   BookOpen,
   Rocket,
   CheckCircle2,
   XCircle,
-  ArrowRight,
 } from "lucide-react";
 import { Button, Badge, Card, SectionHeader, Divider } from "@/components/ui";
 import {
@@ -22,140 +19,7 @@ import {
   StaggerItem,
   LiquidBackground,
 } from "@/components/motion";
-
-// Experiment data - would come from CMS in production
-const experimentData = {
-  title: "Liquid Morphism Cards",
-  slug: "liquid-morphism-cards",
-  type: "experiment",
-  status: "completed",
-  date: "October 2024",
-  summary:
-    "Exploring fluid animations and glassmorphism effects in Flutter using custom painters and shaders for next-generation UI experiences.",
-  tags: ["UI", "Animation", "Flutter", "Custom Painter", "Shaders"],
-  links: {
-    demo: "https://example.com/demo",
-    github: "https://github.com/ridwanfar/liquid-morphism",
-  },
-  motivation: `
-    Modern UI design has evolved beyond flat surfaces. Users expect interfaces that feel alive, 
-    responsive, and delightful. I wanted to explore how far we can push Flutter's rendering 
-    capabilities to create truly premium visual experiences.
-    
-    The goal wasn't just to create "cool effects" — it was to understand the technical 
-    foundations of high-performance animations and how they can be implemented in a way 
-    that's maintainable and performant on real devices.
-  `,
-  approach: {
-    description: `
-      I took a bottom-up approach, starting with Flutter's CustomPainter API to understand 
-      low-level rendering before abstracting into reusable components.
-    `,
-    steps: [
-      {
-        title: "Research & Inspiration",
-        description:
-          "Studied glassmorphism trends, analyzed implementations in SwiftUI and CSS, collected 50+ UI references from Dribbble and Behance.",
-      },
-      {
-        title: "Core Engine Development",
-        description:
-          "Built a custom rendering engine using CustomPainter with support for real-time blur, gradient mesh, and noise textures.",
-      },
-      {
-        title: "Animation System",
-        description:
-          "Implemented a physics-based animation controller that responds to touch velocity and device motion sensors.",
-      },
-      {
-        title: "Performance Optimization",
-        description:
-          "Used RepaintBoundary, cached paint objects, and implemented LOD (Level of Detail) system for older devices.",
-      },
-    ],
-  },
-  techStack: [
-    { name: "Flutter", role: "Framework" },
-    { name: "Custom Painter", role: "Rendering" },
-    { name: "Rive", role: "Complex Animations" },
-    { name: "Sensors Plus", role: "Device Motion" },
-  ],
-  learnings: {
-    worked: [
-      "CustomPainter with cached Paint objects achieved 60fps on mid-range devices",
-      "Physics-based animations feel more natural than predefined curves",
-      "Layer separation (blur layer, content layer, glow layer) simplified debugging",
-      "Using device sensors for subtle parallax creates premium feel without effort",
-    ],
-    didntWork: [
-      "Real-time shader compilation caused jank on first render — solved with warm-up",
-      "Heavy blur on full-screen elements dropped to 30fps — needed LOD fallback",
-      "Complex gradient meshes increased GPU memory significantly on older devices",
-    ],
-  },
-  keyInsights: [
-    {
-      title: "Performance vs Aesthetics Trade-off",
-      description:
-        "Premium effects are possible, but require graceful degradation. Always have a simpler fallback for lower-end devices.",
-    },
-    {
-      title: "Flutter's Hidden Power",
-      description:
-        "Most developers use pre-built widgets, but CustomPainter unlocks near-native rendering performance with full control.",
-    },
-    {
-      title: "Motion Design Principles",
-      description:
-        "Good animation isn't about flashy effects — it's about guiding user attention and providing feedback.",
-    },
-  ],
-  futurePlans: `
-    This experiment has potential to become a proper open-source package. I'm considering:
-    
-    • Publishing as a Flutter package with customizable presets
-    • Adding accessibility options (reduce motion support)
-    • Creating a visual editor for designing liquid effects
-    • Exploring integration with Impeller (Flutter's new rendering engine)
-  `,
-  codeHighlight: `
-// Simplified example of the core blur effect
-class LiquidPainter extends CustomPainter {
-  final double blurRadius;
-  final List<Color> gradientColors;
-  
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..shader = RadialGradient(
-        colors: gradientColors,
-      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
-      ..maskFilter = MaskFilter.blur(BlurStyle.normal, blurRadius);
-    
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        Rect.fromLTWH(0, 0, size.width, size.height),
-        Radius.circular(24),
-      ),
-      paint,
-    );
-  }
-}
-  `,
-};
-
-const relatedExperiments = [
-  {
-    title: "Gesture-Based Navigation",
-    slug: "gesture-navigation",
-    type: "experiment",
-  },
-  {
-    title: "Micro-Interaction Library",
-    slug: "micro-interactions",
-    type: "open-source",
-  },
-];
+import type { ExperimentDetailPageProps } from "@/types";
 
 const statusColors: Record<string, string> = {
   completed:
@@ -164,14 +28,29 @@ const statusColors: Record<string, string> = {
   archived: "text-text-muted bg-dark-700 border-dark-600",
 };
 
-const typeColors: Record<string, string> = {
-  experiment: "text-accent-purple",
-  prototype: "text-accent-blue",
-  tool: "text-accent-cyan",
-  "open-source": "text-accent-rose",
-};
+export default function ExperimentDetailPage({
+  experiment,
+  typeColors,
+}: ExperimentDetailPageProps) {
+  // Use experiment data directly with sensible defaults
+  const experimentData = {
+    ...experiment,
+    status: experiment.status || "completed",
+    date: experiment.date || "2024",
+    motivation: experiment.motivation || experiment.description,
+    approach: experiment.approach || { description: "", steps: [] },
+    techStack:
+      experiment.techStack ||
+      experiment.tags.slice(0, 4).map((tag, i) => ({
+        name: tag,
+        role: ["Framework", "Rendering", "Animation", "Tool"][i] || "Tool",
+      })),
+    learnings: experiment.learnings || { worked: [], didntWork: [] },
+    keyInsights: experiment.keyInsights || [],
+    futurePlans: experiment.futurePlans || "",
+    codeHighlight: experiment.codeHighlight || "",
+  };
 
-export default function ExperimentDetailPage() {
   return (
     <div className="relative">
       <LiquidBackground />
@@ -209,7 +88,7 @@ export default function ExperimentDetailPage() {
 
             {/* Summary */}
             <p className="text-xl text-text-secondary max-w-3xl mb-8">
-              {experimentData.summary}
+              {experimentData.description}
             </p>
 
             {/* Meta & Actions */}
@@ -470,45 +349,6 @@ export default function ExperimentDetailPage() {
               {experimentData.futurePlans.trim()}
             </div>
           </FadeIn>
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* Related Experiments */}
-      <section className="py-16">
-        <div className="section-container">
-          <FadeIn>
-            <SectionHeader
-              title="Related Experiments"
-              subtitle="More explorations you might find interesting."
-            />
-          </FadeIn>
-
-          <StaggerContainer className="grid md:grid-cols-2 gap-6">
-            {relatedExperiments.map((exp) => (
-              <StaggerItem key={exp.slug}>
-                <a href={`/experiments/${exp.slug}`}>
-                  <Card className="group flex items-center justify-between">
-                    <div>
-                      <Badge
-                        variant="category"
-                        className={`capitalize mb-2 ${typeColors[exp.type]}`}>
-                        {exp.type}
-                      </Badge>
-                      <h3 className="text-lg font-semibold text-text-primary group-hover:text-accent-blue transition-colors">
-                        {exp.title}
-                      </h3>
-                    </div>
-                    <ArrowRight
-                      size={20}
-                      className="text-text-muted group-hover:text-accent-blue transition-colors"
-                    />
-                  </Card>
-                </a>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
         </div>
       </section>
 

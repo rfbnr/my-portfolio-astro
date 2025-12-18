@@ -1,0 +1,16 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ExperimentsPage from "@/components/sections/ExperimentsPage";
+import { getExperiments, experimentTypeColors } from "@/lib/content";
+
+// Fetch data from content collections
+const experiments = await getExperiments();
+---
+
+<Layout title="R&D Experiments | Ridwan.dev" description="Explore experimental projects and research in mobile development.">
+  <ExperimentsPage 
+    client:visible 
+    experiments={experiments}
+    typeColors={experimentTypeColors}
+  />
+</Layout>

@@ -1,17 +1,48 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink, Github, Beaker } from "lucide-react";
-import { Badge, Card, SectionHeader, Button } from "@/components/ui";
+import {
+  ExternalLink,
+  Github,
+  Beaker,
+  Code2,
+  GraduationCap,
+  Award,
+  Smartphone,
+  Globe,
+  Server,
+  Wrench,
+  Briefcase,
+  Rocket,
+  Palette,
+} from "lucide-react";
+import { Badge, Card, Button } from "@/components/ui";
 import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
   LiquidBackground,
 } from "@/components/motion";
-import { experiments, experimentTypeColors } from "@/data";
+import type { LucideIcon } from "lucide-react";
+import type { Experiment, ExperimentsPageProps } from "@/types";
 
-export default function ExperimentsPage() {
+// Icon mapping for dynamic icon loading (client-side)
+const iconMap: Record<string, LucideIcon> = {
+  Code2,
+  GraduationCap,
+  Award,
+  Smartphone,
+  Globe,
+  Server,
+  Wrench,
+  Briefcase,
+  Rocket,
+  Palette,
+};
+
+export default function ExperimentsPage({
+  experiments,
+  typeColors,
+}: ExperimentsPageProps) {
   return (
     <div className="relative">
       <LiquidBackground />
@@ -43,7 +74,7 @@ export default function ExperimentsPage() {
         <div className="section-container">
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {experiments.map((experiment) => (
-              <StaggerItem key={experiment.id}>
+              <StaggerItem key={experiment.slug}>
                 <a
                   href={`/experiments/${experiment.slug}`}
                   className="block h-full">
@@ -51,15 +82,21 @@ export default function ExperimentsPage() {
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="w-12 h-12 rounded-xl bg-dark-700 flex items-center justify-center group-hover:bg-accent-blue/10 transition-colors">
-                        <experiment.icon
-                          size={24}
-                          className="text-accent-blue"
-                        />
+                        {(() => {
+                          const IconComponent =
+                            iconMap[experiment.icon] || Code2;
+
+                          return (
+                            <IconComponent
+                              size={24}
+                              className="text-accent-blue"
+                            />
+                          );
+                        })()}
                       </div>
                       <Badge
                         className={`text-xs capitalize ${
-                          experimentTypeColors[experiment.type] ||
-                          experimentTypeColors.experiment
+                          typeColors[experiment.type] || typeColors.experiment
                         }`}>
                         {experiment.type}
                       </Badge>
