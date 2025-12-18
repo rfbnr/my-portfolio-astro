@@ -46,7 +46,7 @@ export interface AboutSkillsByCategory {
 export interface AboutTimelineItem {
   year: string;
   title: string;
-  description: string;
+  description: Array<string>;
   icon: string;
   highlight?: boolean;
 }

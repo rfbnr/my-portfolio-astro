@@ -283,45 +283,16 @@ export default function AboutPage({
             />
           </FadeIn>
 
-          <div className="relative">
+          <div className="relative max-w-3xl mx-auto">
             {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-dark-600" />
+            <div className="absolute left-4 md:left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-blue/50 via-accent-purple/30 to-accent-cyan/50" />
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               {timeline.map((item, index) => (
                 <FadeIn key={item.year} delay={index * 0.1}>
-                  <div
-                    className={`relative flex items-start gap-8 ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}>
-                    {/* Content */}
-                    <div
-                      className={`flex-1 ${
-                        index % 2 === 0 ? "md:text-right md:pr-12" : "md:pl-12"
-                      } pl-12 md:pl-0`}>
-                      <Card
-                        className={
-                          item.highlight ? "border-accent-blue/30" : ""
-                        }>
-                        <div
-                          className={`flex items-center gap-3 mb-3 ${
-                            index % 2 === 0 ? "md:justify-end" : ""
-                          }`}>
-                          <Badge variant={item.highlight ? "tech" : "default"}>
-                            {item.year}
-                          </Badge>
-                        </div>
-                        <h3 className="text-lg font-semibold text-text-primary mb-2">
-                          {item.title}
-                        </h3>
-                        <p className="text-text-secondary text-sm">
-                          {item.description}
-                        </p>
-                      </Card>
-                    </div>
-
-                    {/* Node */}
-                    <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 rounded-full bg-dark-800 border-2 border-accent-blue flex items-center justify-center">
+                  <div className="relative flex items-start gap-6 pl-12 md:pl-16">
+                    {/* Timeline Node */}
+                    <div className="absolute left-0 md:left-2 w-8 h-8 rounded-full bg-dark-800 border-2 border-accent-blue flex items-center justify-center shadow-lg shadow-accent-blue/20">
                       {(() => {
                         const IconComponent = iconMap[item.icon] || Briefcase;
                         return (
@@ -333,8 +304,48 @@ export default function AboutPage({
                       })()}
                     </div>
 
-                    {/* Spacer for opposite side */}
-                    <div className="hidden md:block flex-1" />
+                    {/* Card Content */}
+                    <Card
+                      className={`flex-1 ${
+                        item.highlight
+                          ? "border-accent-blue/30 bg-accent-blue/5"
+                          : ""
+                      }`}>
+                      {/* Header */}
+                      <div className="flex flex-wrap items-center gap-3 mb-3">
+                        <Badge variant={item.highlight ? "tech" : "default"}>
+                          {item.year}
+                        </Badge>
+                        <h3 className="text-lg font-semibold text-text-primary">
+                          {item.title}
+                        </h3>
+                      </div>
+
+                      {/* Achievement description */}
+                      <div className="space-y-2.5">
+                        {item.description.map((point, pointIndex) => (
+                          <div
+                            key={pointIndex}
+                            className="flex items-start gap-3 text-sm text-text-secondary group">
+                            <span className="w-5 h-5 rounded-full bg-accent-blue/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-accent-blue/20 transition-colors">
+                              <svg
+                                className="w-3 h-3 text-accent-blue"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2.5}>
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
+                            </span>
+                            <span className="leading-relaxed">{point}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </Card>
                   </div>
                 </FadeIn>
               ))}

@@ -1,7 +1,12 @@
 {
   "year": "2022",
   "title": "Backend & SSO Architecture",
-  "description": "Expanded into full-stack development with Laravel and implemented SSO systems.",
+  "description": [
+    "Expanded into full-stack development with Laravel and implemented SSO systems.",
+    "Expanded into full-stack development with Laravel and implemented SSO systems.",
+    "Expanded into full-stack development with Laravel and implemented SSO systems.",
+    "Expanded into full-stack development with Laravel and implemented SSO systems."
+  ],
   "icon": "GraduationCap",
   "highlight": false,
   "order": 4

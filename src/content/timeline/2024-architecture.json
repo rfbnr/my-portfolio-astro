@@ -1,7 +1,12 @@
 {
   "year": "2024",
   "title": "Architecture Mastery & Mentoring",
-  "description": "Led mobile architecture decisions and mentored junior developers in Flutter best practices.",
+  "description": [
+    "Led mobile architecture decisions and mentored junior developers in Flutter best practices.",
+    "Led mobile architecture decisions and mentored junior developers in Flutter best practices.",
+    "Led mobile architecture decisions and mentored junior developers in Flutter best practices.",
+    "Led mobile architecture decisions and mentored junior developers in Flutter best practices."
+  ],
   "icon": "Users",
   "highlight": false,
   "order": 2

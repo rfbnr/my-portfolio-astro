@@ -1,7 +1,12 @@
 {
   "year": "2025",
   "title": "Open for New Opportunities",
-  "description": "Seeking challenging projects in mobile architecture and cross-platform development.",
+  "description": [
+    "Open for new opportunities in mobile architecture and cross-platform development.",
+    "Available for remote work.",
+    "Open to new challenges and opportunities.",
+    "Open to new opportunities in mobile architecture and cross-platform development."
+  ],
   "icon": "Award",
   "highlight": true,
   "order": 1

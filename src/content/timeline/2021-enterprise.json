@@ -1,7 +1,11 @@
 {
   "year": "2021",
   "title": "Enterprise System Development",
-  "description": "Transitioned to building enterprise-grade applications with complex business logic.",
+  "description": [
+    "Transitioned to building enterprise-grade applications with complex business logic.",
+    "Transitioned to building enterprise-grade applications with complex business logic.",
+    "Transitioned to building enterprise-grade applications with complex business logic."
+  ],
   "icon": "Briefcase",
   "highlight": false,
   "order": 5

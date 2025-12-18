@@ -135,7 +135,7 @@ const timelineCollection = defineCollection({
   schema: z.object({
     year: z.string(),
     title: z.string(),
-    description: z.string(),
+    description: z.array(z.string()),
     icon: z.string(), // Icon name from lucide-react
     highlight: z.boolean().default(false),
     order: z.number().optional(),
