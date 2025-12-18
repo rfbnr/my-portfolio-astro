@@ -2,6 +2,7 @@
 # Build & Generated Output
 # ===========================
 dist/
+docs/
 .astro/
 .agent/
 *.tsbuildinfo
