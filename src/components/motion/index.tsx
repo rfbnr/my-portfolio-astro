@@ -4,19 +4,18 @@ import { motion, useInView } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import type {
+  AnimatedCounterProps,
+  FadeInProps,
+  FloatingProps,
+  MagneticProps,
+  ParallaxImageProps,
+  StaggerContainerProps,
+} from "@/types";
 
 // ========================================
 // FADE IN COMPONENT
 // ========================================
-
-interface FadeInProps {
-  children: ReactNode;
-  direction?: "up" | "down" | "left" | "right" | "none";
-  delay?: number;
-  duration?: number;
-  className?: string;
-  once?: boolean;
-}
 
 export function FadeIn({
   children,
@@ -56,12 +55,6 @@ export function FadeIn({
 // ========================================
 // STAGGER CONTAINER COMPONENT
 // ========================================
-
-interface StaggerContainerProps {
-  children: ReactNode;
-  staggerDelay?: number;
-  className?: string;
-}
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -136,13 +129,6 @@ export function PageTransition({ children }: { children: ReactNode }) {
 // PARALLAX IMAGE COMPONENT
 // ========================================
 
-interface ParallaxImageProps {
-  src: string;
-  alt: string;
-  className?: string;
-  depth?: number;
-}
-
 export function ParallaxImage({
   src,
   alt,
@@ -191,12 +177,6 @@ export function ParallaxImage({
 // MAGNETIC ELEMENT COMPONENT
 // ========================================
 
-interface MagneticProps {
-  children: ReactNode;
-  strength?: number;
-  className?: string;
-}
-
 export function Magnetic({
   children,
   strength = 0.3,
@@ -235,14 +215,6 @@ export function Magnetic({
 // ========================================
 // COUNTER ANIMATION COMPONENT
 // ========================================
-
-interface AnimatedCounterProps {
-  value: number;
-  suffix?: string;
-  prefix?: string;
-  duration?: number;
-  className?: string;
-}
 
 export function AnimatedCounter({
   value,
@@ -339,12 +311,6 @@ export function ScrollIndicator() {
 // ========================================
 // FLOATING ELEMENT WRAPPER
 // ========================================
-
-interface FloatingProps {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-}
 
 export function Floating({ children, className, delay = 0 }: FloatingProps) {
   return (
