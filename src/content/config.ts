@@ -14,6 +14,7 @@ const projectsCollection = defineCollection({
     image: z.string(),
     featured: z.boolean().default(false),
     order: z.number().optional(),
+    showcase: z.array(z.string()).optional(),
 
     // Detail fields (for case study page)
     summary: z.string().optional(),

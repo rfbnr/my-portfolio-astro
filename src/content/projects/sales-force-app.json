@@ -6,6 +6,12 @@
   "image": "/projects/sales.jpg",
   "featured": true,
   "order": 2,
+  "showcase": [
+    "/images/projects/example-web.png",
+    "/images/projects/example-mobile.png",
+    "/images/avatar.png",
+    "/images/avatar-hoodie.png"
+  ],
 
   "summary": "Mobile-first sales tracking application with real-time location tracking, customer management, and offline-first architecture.",
   "role": "Senior Mobile Developer",

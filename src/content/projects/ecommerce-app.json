@@ -6,6 +6,12 @@
   "image": "/projects/ecommerce.jpg",
   "featured": false,
   "order": 4,
+  "showcase": [
+    "/images/projects/example-mobile.png",
+    "/images/projects/example-web.png",
+    "/images/avatar.png",
+    "/images/avatar-hoodie.png"
+  ],
 
   "summary": "Full-featured e-commerce application with real-time inventory, payment processing, and personalized recommendations.",
   "role": "Mobile Developer",

@@ -6,6 +6,12 @@
   "image": "/projects/animation.jpg",
   "featured": false,
   "order": 6,
+  "showcase": [
+    "/images/projects/example-mobile.png",
+    "/images/projects/example-web.png",
+    "/images/avatar.png",
+    "/images/avatar-hoodie.png"
+  ],
 
   "summary": "Experimental project exploring advanced Flutter animations and micro-interactions for enhanced UX.",
   "role": "R&D Developer",

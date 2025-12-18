@@ -6,6 +6,12 @@
   "image": "/projects/sso.jpg",
   "featured": false,
   "order": 5,
+  "showcase": [
+    "/images/projects/example-mobile.png",
+    "/images/projects/example-web.png",
+    "/images/avatar.png",
+    "/images/avatar-hoodie.png"
+  ],
 
   "summary": "Centralized single sign-on system supporting multiple authentication providers and enterprise-grade security.",
   "role": "Backend Developer",

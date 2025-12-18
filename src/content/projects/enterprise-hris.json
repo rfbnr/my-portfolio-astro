@@ -4,8 +4,14 @@
   "tech": ["Flutter", "Laravel", "MySQL", "Firebase", "REST API", "Docker"],
   "description": "Comprehensive human resource information system for enterprise-level employee management.",
   "image": "/projects/hris.jpg",
-  "featured": true,
+  "featured": false,
   "order": 1,
+  "showcase": [
+    "/images/projects/example-web.png",
+    "/images/projects/example-mobile.png",
+    "/images/avatar.png",
+    "/images/avatar-hoodie.png"
+  ],
 
   "summary": "Comprehensive human resource information system handling employee management, attendance, payroll, and performance reviews for 5000+ users.",
   "role": "Lead Mobile Developer",
