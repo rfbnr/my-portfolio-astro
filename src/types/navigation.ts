@@ -1,19 +1,27 @@
-/**
- * Navigation and link-related type definitions
- */
+// /**
+//  * Navigation and link-related type definitions
+//  */
 
-import type { LucideIcon } from "lucide-react";
+import type { SiteConfig } from ".";
+
+export interface FooterProps {
+  socialLinks: SocialLink[];
+  footerLinks: FooterLinkGroup[];
+  siteConfig: SiteConfig;
+}
+
+export interface ContactPageProps {
+  socialLinks: SocialLink[];
+  contactInfo: ContactInfo[];
+}
+
+export interface NavigationProps {
+  navLinks: NavLink[];
+}
 
 export interface NavLink {
   href: string;
   label: string;
-}
-
-export interface SocialLink {
-  href: string;
-  icon: LucideIcon;
-  label: string;
-  username?: string;
 }
 
 export interface FooterLinkGroup {
@@ -21,8 +29,15 @@ export interface FooterLinkGroup {
   links: NavLink[];
 }
 
+export interface SocialLink {
+  href: string;
+  icon: string;
+  label: string;
+  username?: string;
+}
+
 export interface ContactInfo {
-  icon: LucideIcon;
+  icon: string;
   label: string;
   value: string;
 }
