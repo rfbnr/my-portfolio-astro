@@ -1,41 +1,74 @@
 /**
- * Central type exports
- * All type definitions should be exported from here
+ * Types Index
+ * Re-exports all types for easy importing
+ *
+ * Usage: import { Project, SocialLink, Skill } from "@/types";
  */
 
-// Project types
+// Content types (projects, experiments)
 export type {
+  ExperimentsPageProps,
+  ExperimentDetailPageProps,
+  ExperimentApproachStep,
+  ExperimentTechStackItem,
+  ExperimentKeyInsight,
+  ExperimentLearnings,
+  ExperimentApproach,
+  ExperimentLinks,
+  Experiment,
+  ExperimentType,
+} from "./experiment";
+
+export type {
+  ProjectsPageProps,
+  ProjectCardProps,
+  ProjectDetailPageProps,
+  ProjectsGridProps,
+  RelatedProject,
   Project,
+  ProjectChallenge,
+  ProjectMetric,
   ProjectCategory,
   ProjectCategoryFilter,
 } from "./project";
 
-// Experiment types
 export type {
-  Experiment,
-  ExperimentType,
-  ExperimentLinks,
-  ExperimentTypeColors,
-} from "./experiment";
+  SiteConfig,
+  HeroTechStack,
+  HeroMetric,
+  HeroSectionProps,
+} from "./home";
 
-// Skill types
 export type {
-  Skill,
-  SkillLevel,
-  SkillCategory,
-  SkillsByCategory,
-  SkillCategoryInfo,
-  TechStackItem,
-  MetricItem,
-} from "./skill";
-
-// Timeline types
-export type { TimelineItem, Education, Certification, Value } from "./timeline";
-
-// Navigation types
-export type {
+  FooterProps,
+  ContactPageProps,
+  NavigationProps,
   NavLink,
-  SocialLink,
   FooterLinkGroup,
+  SocialLink,
   ContactInfo,
 } from "./navigation";
+
+// About page types (skills, timeline, education)
+export type {
+  AboutPageProps,
+  AboutSkillLevel,
+  AboutSkill,
+  AboutSkillCategory,
+  AboutSkillsByCategory,
+  AboutTimelineItem,
+  AboutEducation,
+  AboutCertification,
+  Value,
+  AboutLevelColors,
+} from "./about";
+
+// Motion types
+export type {
+  FadeInProps,
+  AnimatedCounterProps,
+  FloatingProps,
+  MagneticProps,
+  ParallaxImageProps,
+  StaggerContainerProps,
+} from "./motion";
