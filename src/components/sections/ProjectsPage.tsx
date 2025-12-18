@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ExternalLink, Briefcase, Filter } from "lucide-react";
-import { Badge, Card, SectionHeader, Button } from "@/components/ui";
+import { ArrowUpRight, ExternalLink, Briefcase } from "lucide-react";
+import { Badge, Card, Button } from "@/components/ui";
 import {
   FadeIn,
   StaggerContainer,
@@ -11,92 +11,9 @@ import {
   LiquidBackground,
 } from "@/components/motion";
 import { cn } from "@/lib/utils";
+import type { ProjectCardProps, ProjectsPageProps } from "@/types";
 
-// Filter categories
-const categories = [
-  { id: "all", label: "All" },
-  { id: "mobile", label: "Mobile" },
-  { id: "web", label: "Web" },
-  { id: "enterprise", label: "Enterprise" },
-  { id: "experimental", label: "Experimental" },
-];
-
-// Demo projects data
-const projects = [
-  {
-    id: 1,
-    title: "Enterprise HRIS Platform",
-    slug: "enterprise-hris",
-    category: "enterprise",
-    tech: ["Flutter", "Laravel", "MySQL", "Firebase"],
-    description:
-      "Comprehensive human resource information system handling employee management, attendance, payroll, and performance reviews for 5000+ users.",
-    image: "/projects/hris.jpg",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "Sales Force Automation",
-    slug: "sales-force-app",
-    category: "mobile",
-    tech: ["Flutter", "REST API", "SQLite", "Maps"],
-    description:
-      "Mobile-first sales tracking application with real-time location tracking, customer management, and offline-first architecture.",
-    image: "/projects/sales.jpg",
-    featured: true,
-  },
-  {
-    id: 3,
-    title: "CRM Dashboard",
-    slug: "crm-dashboard",
-    category: "web",
-    tech: ["Next.js", "TypeScript", "PostgreSQL", "Chart.js"],
-    description:
-      "Interactive customer relationship management dashboard with advanced analytics and reporting capabilities.",
-    image: "/projects/crm.jpg",
-    featured: true,
-  },
-  {
-    id: 4,
-    title: "E-Commerce Mobile App",
-    slug: "ecommerce-app",
-    category: "mobile",
-    tech: ["Flutter", "Firebase", "Stripe", "Algolia"],
-    description:
-      "Full-featured e-commerce application with real-time inventory, payment processing, and personalized recommendations.",
-    image: "/projects/ecommerce.jpg",
-    featured: false,
-  },
-  {
-    id: 5,
-    title: "SSO Authentication System",
-    slug: "sso-system",
-    category: "enterprise",
-    tech: ["Laravel", "OAuth2", "Redis", "Docker"],
-    description:
-      "Centralized single sign-on system supporting multiple authentication providers and enterprise-grade security.",
-    image: "/projects/sso.jpg",
-    featured: false,
-  },
-  {
-    id: 6,
-    title: "Animation Playground",
-    slug: "animation-playground",
-    category: "experimental",
-    tech: ["Flutter", "Rive", "Lottie"],
-    description:
-      "Experimental project exploring advanced Flutter animations and micro-interactions for enhanced UX.",
-    image: "/projects/animation.jpg",
-    featured: false,
-  },
-];
-
-interface ProjectCardProps {
-  project: (typeof projects)[0];
-  index: number;
-}
-
-function ProjectCard({ project, index }: ProjectCardProps) {
+function ProjectCard({ project }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -183,7 +100,10 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   );
 }
 
-export default function ProjectsPage() {
+export default function ProjectsPage({
+  projects,
+  categories,
+}: ProjectsPageProps) {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects = projects.filter(
@@ -245,8 +165,12 @@ export default function ProjectsPage() {
         <div className="section-container">
           <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
+              {filteredProjects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={project.order || 0}
+                />
               ))}
             </AnimatePresence>
           </StaggerContainer>

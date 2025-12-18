@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ExternalLink,
@@ -19,70 +18,25 @@ import {
   StaggerItem,
   LiquidBackground,
 } from "@/components/motion";
+import type { Project, ProjectDetailPageProps } from "@/types";
 
-// Demo project data - in real app this would come from Sanity CMS
-const projectData = {
-  title: "Enterprise HRIS Platform",
-  slug: "enterprise-hris",
-  category: "Enterprise",
-  summary:
-    "Comprehensive human resource information system for enterprise-level employee management.",
-  role: "Lead Mobile Developer",
-  timeline: "Jan 2023 - Present",
-  tech: ["Flutter", "Laravel", "MySQL", "Firebase", "REST API", "Docker"],
-  liveUrl: "https://example.com",
-  repoUrl: "https://github.com/ridwanfar",
-  description: `
-    This project involved building a comprehensive Human Resource Information System (HRIS) 
-    to streamline employee management, attendance tracking, payroll processing, and performance 
-    reviews for a large enterprise with 5000+ employees across multiple locations.
-    
-    The challenge was to create a mobile-first solution that works seamlessly offline while 
-    maintaining data integrity and synchronization with the central system.
-  `,
-  challenges: [
-    {
-      challenge: "Offline-First Architecture",
-      solution:
-        "Implemented SQLite local storage with intelligent sync queue and conflict resolution algorithms to ensure data integrity even in low-connectivity scenarios.",
-    },
-    {
-      challenge: "Real-time Attendance Tracking",
-      solution:
-        "Built a GPS-based attendance system with geofencing and anti-spoofing measures, integrating with biometric authentication for enhanced security.",
-    },
-    {
-      challenge: "Complex Role-Based Access",
-      solution:
-        "Designed a flexible RBAC system supporting hierarchical permissions, allowing granular access control across departments and management levels.",
-    },
-    {
-      challenge: "Performance at Scale",
-      solution:
-        "Optimized database queries and implemented lazy loading with pagination, reducing initial load time by 60% for users managing large datasets.",
-    },
-  ],
-  impactMetrics: [
-    { label: "Active Users", value: "5,000+" },
-    { label: "Performance Improvement", value: "+60%" },
-    { label: "Offline Reliability", value: "99.9%" },
-    { label: "User Satisfaction", value: "4.8/5" },
-  ],
-  outcome: `
-    The HRIS platform has been successfully deployed across all company locations, 
-    significantly reducing HR administrative overhead by 40% and improving employee 
-    self-service adoption rates. The mobile-first approach enabled field workers to 
-    access HR services seamlessly, even in areas with limited connectivity.
-  `,
-};
+export default function ProjectDetailPage({
+  project,
+  relatedProjects,
+}: ProjectDetailPageProps) {
+  // Use project data directly, with sensible defaults only for optional fields
+  const projectData = {
+    ...project,
+    summary: project.summary || project.description,
+    role: project.role || "Developer",
+    timeline: project.timeline || "2023",
+    liveUrl: project.liveUrl || "#",
+    repoUrl: project.repoUrl || "#",
+    challenges: project.challenges || [],
+    impactMetrics: project.impactMetrics || [],
+    outcome: project.outcome || "",
+  };
 
-const relatedProjects = [
-  { title: "Sales Force App", slug: "sales-force-app", category: "Mobile" },
-  { title: "CRM Dashboard", slug: "crm-dashboard", category: "Web" },
-  { title: "SSO System", slug: "sso-system", category: "Enterprise" },
-];
-
-export default function CaseStudyPage() {
   return (
     <div className="relative">
       <LiquidBackground />
@@ -100,9 +54,14 @@ export default function CaseStudyPage() {
             </a>
 
             {/* Category Badge */}
-            <Badge variant="category" className="mb-4">
+            {/* <Badge variant="category" className="mb-4">
               {projectData.category}
-            </Badge>
+            </Badge> */}
+            <div className="flex flex-wrap gap-3 mb-4">
+              <Badge variant="category" className="capitalize">
+                {projectData.category}
+              </Badge>
+            </div>
 
             {/* Title */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">

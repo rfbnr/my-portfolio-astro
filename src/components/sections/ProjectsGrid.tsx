@@ -6,13 +6,7 @@ import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { Badge, Card, SectionHeader } from "@/components/ui";
 import { FadeIn } from "@/components/motion";
 import { cn } from "@/lib/utils";
-import { projects, projectCategories } from "@/data";
-import type { Project } from "@/types";
-
-interface ProjectCardProps {
-  project: Project;
-  index: number;
-}
+import type { ProjectCardProps, ProjectsGridProps } from "@/types";
 
 function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
@@ -110,12 +104,12 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   );
 }
 
-interface ProjectsGridProps {
-  showHeader?: boolean;
-  limit?: number;
-}
-
-export function ProjectsGrid({ showHeader = true, limit }: ProjectsGridProps) {
+export function ProjectsGrid({
+  projects,
+  categories,
+  showHeader = true,
+  limit,
+}: ProjectsGridProps) {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredProjects = projects.filter(
@@ -141,7 +135,7 @@ export function ProjectsGrid({ showHeader = true, limit }: ProjectsGridProps) {
         {/* Filter Bar */}
         <FadeIn delay={0.2}>
           <div className="flex flex-wrap gap-2 mb-12">
-            {projectCategories.map((category) => (
+            {categories.map((category) => (
               <motion.button
                 key={category.id}
                 onClick={() => setActiveFilter(category.id)}

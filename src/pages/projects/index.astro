@@ -1,10 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ProjectsPage from "@/components/sections/ProjectsPage";
+import { getProjects, projectCategories } from "@/lib/content";
+
+// Fetch data from content collections
+const projects = await getProjects();
 ---
 
 <Layout title="Projects | Ridwan.dev" description="A selection of my recent work building production-ready applications across mobile, web, and enterprise platforms.">
-  <ProjectsPage client:idle />
+  <ProjectsPage 
+    client:visible 
+    projects={projects}
+    categories={projectCategories}
+  />
 </Layout>
-
-

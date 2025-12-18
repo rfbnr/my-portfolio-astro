@@ -1,24 +1,40 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import CaseStudyPage from "@/components/sections/CaseStudyPage";
+import ProjectDetailPage from "@/components/sections/ProjectDetailPage";
+import { getProjects } from "@/lib/content";
 
-// Define all project slugs for static generation
-export function getStaticPaths() {
-  const projects = [
-    { slug: "enterprise-hris" },
-    { slug: "sales-force-app" },
-    { slug: "crm-dashboard" },
-    { slug: "ecommerce-app" },
-    { slug: "sso-system" },
-    { slug: "animation-playground" },
-  ];
+// Generate static paths from content collection
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
   
-  return projects.map(({ slug }) => ({
-    params: { slug },
+  return projects.map((entry) => ({
+    params: { slug: entry.id },
+    props: { project: entry },
   }));
 }
+
+const { project } = Astro.props;
+const projectData = {
+  id: project.id,
+  slug: project.id,
+  ...project.data,
+};
+
+// Get related projects (other projects for sidebar)
+const allProjects = await getProjects();
+const relatedProjects = allProjects
+  .filter((p) => p.id !== project.id)
+  .slice(0, 3);
 ---
 
-<Layout title="Case Study | Ridwan.dev" description="Enterprise HRIS Platform - Comprehensive human resource information system.">
-  <CaseStudyPage client:idle />
+<Layout 
+  title={`${projectData.title} | Case Study | Ridwan.dev`} 
+  description={projectData.description}
+>
+  <ProjectDetailPage 
+    client:visible 
+    project={projectData}
+    relatedProjects={relatedProjects}
+  />
 </Layout>
