@@ -31,10 +31,16 @@ export interface ProjectDetailPageProps {
   relatedProjects: RelatedProject[];
 }
 
+export interface ProjectShowcaseProps {
+  images: string[];
+  title: string;
+}
+
 export interface RelatedProject {
   slug: string;
   title: string;
   category: string;
+  showcase?: string[];
 }
 
 export interface Project {
@@ -56,6 +62,7 @@ export interface Project {
   challenges?: ProjectChallenge[];
   impactMetrics?: ProjectMetric[];
   outcome?: string;
+  showcase?: string[];
 }
 
 export interface ProjectChallenge {

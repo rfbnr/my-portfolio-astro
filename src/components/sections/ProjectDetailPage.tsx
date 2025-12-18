@@ -18,7 +18,8 @@ import {
   StaggerItem,
   LiquidBackground,
 } from "@/components/motion";
-import type { Project, ProjectDetailPageProps } from "@/types";
+import type { ProjectDetailPageProps } from "@/types";
+import { ProjectShowcase } from "./ProjectShowcase";
 
 export default function ProjectDetailPage({
   project,
@@ -35,6 +36,7 @@ export default function ProjectDetailPage({
     challenges: project.challenges || [],
     impactMetrics: project.impactMetrics || [],
     outcome: project.outcome || "",
+    showcase: project.showcase || [],
   };
 
   return (
@@ -54,9 +56,6 @@ export default function ProjectDetailPage({
             </a>
 
             {/* Category Badge */}
-            {/* <Badge variant="category" className="mb-4">
-              {projectData.category}
-            </Badge> */}
             <div className="flex flex-wrap gap-3 mb-4">
               <Badge variant="category" className="capitalize">
                 {projectData.category}
@@ -88,22 +87,11 @@ export default function ProjectDetailPage({
         </div>
       </section>
 
-      {/* Hero Media */}
-      <section className="py-8">
-        <div className="section-container">
-          <FadeIn delay={0.2}>
-            <div className="relative aspect-video rounded-2xl overflow-hidden glass">
-              {/* Placeholder gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/20 via-dark-800 to-accent-purple/20" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-6xl md:text-8xl font-bold text-white/10">
-                  HRIS
-                </span>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      {/* Hero Media - Project Showcase Carousel */}
+      <ProjectShowcase
+        images={projectData.showcase || []}
+        title={projectData.title}
+      />
 
       {/* Project Overview */}
       <section className="py-16">
@@ -269,10 +257,20 @@ export default function ProjectDetailPage({
               <StaggerItem key={project.slug}>
                 <a href={`/projects/${project.slug}`}>
                   <Card className="group">
-                    <div className="aspect-video rounded-lg bg-gradient-to-br from-dark-700 to-dark-800 mb-4 flex items-center justify-center">
-                      <span className="text-4xl font-bold text-white/10">
-                        {project.title.charAt(0)}
-                      </span>
+                    <div className="aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-dark-700 to-dark-800 mb-4 relative">
+                      {project.showcase && project.showcase.length > 0 ? (
+                        <img
+                          src={project.showcase[0]}
+                          alt={project.title}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-4xl font-bold text-white/10">
+                            {project.title.charAt(0)}
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <Badge variant="category" className="mb-2">
                       {project.category}

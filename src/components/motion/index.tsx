@@ -13,6 +13,10 @@ import type {
   StaggerContainerProps,
 } from "@/types";
 
+// Re-export carousel and lightbox components
+export { ImageCarousel } from "./ImageCarousel";
+export { ImageLightbox } from "./ImageLightbox";
+
 // ========================================
 // FADE IN COMPONENT
 // ========================================

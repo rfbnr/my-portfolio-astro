@@ -9,6 +9,23 @@ export interface FadeInProps {
   once?: boolean;
 }
 
+export interface ImageCarouselProps {
+  images: string[];
+  alt?: string;
+  onImageClick?: (index: number) => void;
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+}
+
+export interface ImageLightboxProps {
+  images: string[];
+  currentIndex: number;
+  isOpen: boolean;
+  onClose: () => void;
+  onNavigate: (index: number) => void;
+  alt?: string;
+}
+
 export interface StaggerContainerProps {
   children: ReactNode;
   staggerDelay?: number;

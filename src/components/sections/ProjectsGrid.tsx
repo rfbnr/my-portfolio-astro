@@ -8,7 +8,7 @@ import { FadeIn } from "@/components/motion";
 import { cn } from "@/lib/utils";
 import type { ProjectCardProps, ProjectsGridProps } from "@/types";
 
-function ProjectCard({ project, index }: ProjectCardProps) {
+export function ProjectCard({ project, index }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -25,15 +25,25 @@ function ProjectCard({ project, index }: ProjectCardProps) {
           onMouseLeave={() => setIsHovered(false)}>
           {/* Project Image / Placeholder */}
           <div className="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-dark-700 to-dark-800">
-            {/* Gradient placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/20 via-accent-purple/10 to-accent-cyan/20" />
-
-            {/* Project title overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-4xl font-bold text-white/10">
-                {project.title.charAt(0)}
-              </span>
-            </div>
+            {/* Show actual image if showcase exists, otherwise show placeholder */}
+            {project.showcase && project.showcase.length > 0 ? (
+              <img
+                src={project.showcase[0]}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-contain"
+              />
+            ) : (
+              <>
+                {/* Gradient placeholder */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/20 via-accent-purple/10 to-accent-cyan/20" />
+                {/* Project title overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-4xl font-bold text-white/10">
+                    {project.title.charAt(0)}
+                  </span>
+                </div>
+              </>
+            )}
 
             {/* Hover overlay */}
             <motion.div
