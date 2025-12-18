@@ -1,0 +1,43 @@
+{
+  "title": "Sales Force Automation",
+  "category": "mobile",
+  "tech": ["Flutter", "REST API", "SQLite", "Maps", "Firebase"],
+  "description": "Mobile-first sales tracking application with real-time location tracking, customer management, and offline-first architecture.",
+  "image": "/projects/sales.jpg",
+  "featured": true,
+  "order": 2,
+
+  "summary": "Mobile-first sales tracking application with real-time location tracking, customer management, and offline-first architecture.",
+  "role": "Senior Mobile Developer",
+  "timeline": "Jun 2022 - Dec 2023",
+  "liveUrl": "#",
+  "repoUrl": "#",
+
+  "challenges": [
+    {
+      "challenge": "GPS Tracking Accuracy",
+      "solution": "Implemented multi-source location tracking combining GPS, WiFi, and cell tower data for reliable positioning in urban environments."
+    },
+    {
+      "challenge": "Offline Sales Recording",
+      "solution": "Built a robust offline-first database with automatic sync when connectivity resumes, ensuring no sales data is ever lost."
+    },
+    {
+      "challenge": "Route Optimization",
+      "solution": "Integrated Google Maps API with custom algorithms to suggest optimal visit routes, reducing travel time by 25%."
+    },
+    {
+      "challenge": "Real-time Inventory",
+      "solution": "Designed a real-time inventory sync system allowing sales reps to check stock availability instantly."
+    }
+  ],
+
+  "impactMetrics": [
+    { "label": "Sales Reps", "value": "500+" },
+    { "label": "Travel Time Reduced", "value": "-25%" },
+    { "label": "Data Sync Success", "value": "99.5%" },
+    { "label": "Visits Tracked", "value": "50K/mo" }
+  ],
+
+  "outcome": "The Sales Force app has transformed field sales operations, enabling real-time visibility into sales activities and improving team productivity by 35%. The offline-first approach ensures reliable operation in areas with poor connectivity."
+}

@@ -1,0 +1,75 @@
+{
+  "title": "Offline Sync Engine",
+  "description": "Building a robust offline-first data synchronization engine with conflict resolution for mobile apps.",
+  "tags": ["Architecture", "Offline-First", "SQLite", "Sync"],
+  "type": "prototype",
+  "icon": "Box",
+  "links": {
+    "github": "https://github.com/ridwanfar/offline-sync"
+  },
+  "order": 2,
+
+  "status": "completed",
+  "date": "August 2024",
+  "motivation": "Modern mobile apps must work reliably regardless of network conditions. I wanted to build a reusable sync engine that handles the complexities of offline-first architecture so I can use it across multiple projects.",
+
+  "approach": {
+    "description": "Started with research on existing solutions like WatermelonDB and Realm, then built a custom solution tailored for Flutter apps.",
+    "steps": [
+      {
+        "title": "Architecture Design",
+        "description": "Designed a queue-based sync system with versioning and conflict detection."
+      },
+      {
+        "title": "Local Storage Layer",
+        "description": "Built SQLite wrapper with automatic schema migrations and type-safe queries."
+      },
+      {
+        "title": "Sync Queue Implementation",
+        "description": "Created a priority queue for pending operations with retry logic and exponential backoff."
+      },
+      {
+        "title": "Conflict Resolution",
+        "description": "Implemented last-write-wins and custom merge strategies for different data types."
+      }
+    ]
+  },
+
+  "techStack": [
+    { "name": "Flutter", "role": "Framework" },
+    { "name": "SQLite", "role": "Local Storage" },
+    { "name": "Drift", "role": "ORM" },
+    { "name": "Dio", "role": "HTTP Client" }
+  ],
+
+  "learnings": {
+    "worked": [
+      "Queue-based sync with timestamps ensures no data loss",
+      "Optimistic UI updates make the app feel responsive",
+      "Batch sync operations reduce API calls significantly"
+    ],
+    "didntWork": [
+      "Initial simple timestamp comparison missed edge cases",
+      "Large sync payloads caused memory issues — needed chunking"
+    ]
+  },
+
+  "keyInsights": [
+    {
+      "title": "Offline First is Complex",
+      "description": "There's no one-size-fits-all solution. Each app needs customized conflict resolution strategies."
+    },
+    {
+      "title": "UX Matters Most",
+      "description": "Users don't care about sync — they care that their data is always available and up-to-date."
+    },
+    {
+      "title": "Test Everything",
+      "description": "Network simulation testing is essential. Real-world conditions are unpredictable."
+    }
+  ],
+
+  "futurePlans": "Planning to extract this into a standalone Flutter package with:\n\n• Plugin architecture for different backends\n• Built-in conflict resolution strategies\n• Developer tools for debugging sync issues",
+
+  "codeHighlight": "// Sync queue implementation\nclass SyncQueue {\n  final Database db;\n  final ApiClient api;\n  \n  Future<void> processQueue() async {\n    final pending = await db.getPendingOperations();\n    for (final op in pending) {\n      try {\n        await api.sync(op);\n        await db.markCompleted(op.id);\n      } catch (e) {\n        await db.incrementRetry(op.id);\n      }\n    }\n  }\n}"
+}

@@ -1,0 +1,75 @@
+{
+  "title": "State Machine Visualizer",
+  "description": "Visual debugging tool for state machines in Flutter applications.",
+  "tags": ["DevTools", "State Management", "Visualization", "Debug"],
+  "type": "tool",
+  "icon": "Beaker",
+  "links": {
+    "github": "https://github.com/ridwanfar/state-visualizer"
+  },
+  "order": 4,
+
+  "status": "in-progress",
+  "date": "November 2024",
+  "motivation": "State machines are powerful but hard to debug. I wanted a visual tool that shows state transitions in real-time, making it easier to understand and debug complex state logic.",
+
+  "approach": {
+    "description": "Built a DevTools extension that intercepts state machine events and renders them as an interactive graph.",
+    "steps": [
+      {
+        "title": "Event Interception",
+        "description": "Created hooks to capture state transitions from popular state management libraries."
+      },
+      {
+        "title": "Graph Rendering",
+        "description": "Built a force-directed graph layout using CustomPainter for smooth performance."
+      },
+      {
+        "title": "Time Travel",
+        "description": "Implemented state history tracking with ability to replay transitions."
+      },
+      {
+        "title": "DevTools Integration",
+        "description": "Packaged as a Flutter DevTools extension for seamless workflow integration."
+      }
+    ]
+  },
+
+  "techStack": [
+    { "name": "Flutter", "role": "Framework" },
+    { "name": "DevTools Extension", "role": "Integration" },
+    { "name": "Force Layout", "role": "Graph Rendering" },
+    { "name": "Bloc/Riverpod", "role": "State Libraries" }
+  ],
+
+  "learnings": {
+    "worked": [
+      "Force-directed layout creates intuitive state visualization",
+      "Color-coded transitions help identify patterns quickly",
+      "Zoom and pan make large state machines navigable"
+    ],
+    "didntWork": [
+      "Initial canvas rendering was too slow for complex graphs",
+      "DevTools API had undocumented quirks that required workarounds"
+    ]
+  },
+
+  "keyInsights": [
+    {
+      "title": "Visual Debugging Helps",
+      "description": "Seeing state flow visually catches issues that console logs miss."
+    },
+    {
+      "title": "DevTools Extension API",
+      "description": "The API is powerful but documentation is sparse — source code reading is essential."
+    },
+    {
+      "title": "Performance Critical",
+      "description": "Debug tools must be fast or developers won't use them."
+    }
+  ],
+
+  "futurePlans": "Planning to add:\n\n• State diff visualization\n• Export to Mermaid/GraphViz\n• Performance profiling for state transitions\n• Support for more state management libraries",
+
+  "codeHighlight": "// State transition capture\nclass StateVisualizer {\n  final List<Transition> history = [];\n  \n  void onTransition(state, event, nextState) {\n    history.add(Transition(\n      from: state,\n      to: nextState,\n      event: event,\n      timestamp: DateTime.now(),\n    ));\n    updateGraph();\n  }\n}"
+}

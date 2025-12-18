@@ -1,0 +1,76 @@
+{
+  "title": "Gesture-Based Navigation",
+  "description": "Implementing iOS-like gesture navigation patterns in Flutter for seamless user experience.",
+  "tags": ["UX", "Gestures", "Navigation", "Flutter"],
+  "type": "experiment",
+  "icon": "Puzzle",
+  "links": {
+    "demo": "#",
+    "github": "https://github.com/ridwanfar/gesture-nav"
+  },
+  "order": 3,
+
+  "status": "completed",
+  "date": "September 2024",
+  "motivation": "iOS users expect swipe-back gestures to work flawlessly. Flutter's default back gesture feels clunky compared to native iOS. I wanted to recreate that seamless, physics-based navigation experience.",
+
+  "approach": {
+    "description": "Analyzed iOS navigation behavior frame by frame, then recreated the physics and visual cues in Flutter.",
+    "steps": [
+      {
+        "title": "Behavior Analysis",
+        "description": "Recorded and analyzed iOS navigation gestures to understand the physics curves and thresholds."
+      },
+      {
+        "title": "Custom PageRoute",
+        "description": "Built a custom PageRoute with gesture detection and interactive transitions."
+      },
+      {
+        "title": "Physics Tuning",
+        "description": "Implemented spring physics with carefully tuned damping and stiffness values."
+      },
+      {
+        "title": "Edge Cases",
+        "description": "Handled nested navigators, modal sheets, and conflicting horizontal scrollviews."
+      }
+    ]
+  },
+
+  "techStack": [
+    { "name": "Flutter", "role": "Framework" },
+    { "name": "GestureDetector", "role": "Touch Handling" },
+    { "name": "SpringSimulation", "role": "Physics" },
+    { "name": "PageRouteBuilder", "role": "Navigation" }
+  ],
+
+  "learnings": {
+    "worked": [
+      "Spring physics with 0.7 damping ratio feels most natural",
+      "Velocity-based completion threshold improves UX",
+      "Shadow and scale effects add to the premium feel"
+    ],
+    "didntWork": [
+      "Gesture arena conflicts with horizontal scrollviews needed careful handling",
+      "Hero animations required special coordination with gesture state"
+    ]
+  },
+
+  "keyInsights": [
+    {
+      "title": "Details Matter",
+      "description": "The difference between 'good enough' and 'great' is in subtle physics and visual feedback."
+    },
+    {
+      "title": "Platform Expectations",
+      "description": "Users have muscle memory from their platform — respect it or frustrate them."
+    },
+    {
+      "title": "Test on Real Devices",
+      "description": "Gesture performance varies significantly between emulators and real hardware."
+    }
+  ],
+
+  "futurePlans": "Considering contributing this as a Flutter community package with:\n\n• iOS and Android-specific behaviors\n• Customizable physics parameters\n• Integration with common navigation packages",
+
+  "codeHighlight": "// Interactive back gesture\nclass SwipeBackGesture extends StatefulWidget {\n  @override\n  Widget build(BuildContext context) {\n    return GestureDetector(\n      onHorizontalDragUpdate: (details) {\n        if (details.delta.dx > 0) {\n          controller.value += details.delta.dx / screenWidth;\n        }\n      },\n      onHorizontalDragEnd: (details) {\n        if (controller.value > 0.5 || velocity > threshold) {\n          Navigator.pop(context);\n        }\n      },\n    );\n  }\n}"
+}

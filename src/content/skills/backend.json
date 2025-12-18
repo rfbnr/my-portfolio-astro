@@ -1,0 +1,12 @@
+{
+  "category": "backend",
+  "categoryTitle": "Backend",
+  "categoryIcon": "Rocket",
+  "skills": [
+    { "name": "Laravel", "level": "Expert", "years": 3 },
+    { "name": "Node.js", "level": "Intermediate", "years": 2 },
+    { "name": "Firebase", "level": "Advanced", "years": 3 },
+    { "name": "PostgreSQL", "level": "Intermediate", "years": 2 }
+  ],
+  "order": 3
+}

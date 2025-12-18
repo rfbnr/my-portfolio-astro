@@ -1,0 +1,12 @@
+{
+  "category": "web",
+  "categoryTitle": "Web",
+  "categoryIcon": "Palette",
+  "skills": [
+    { "name": "Next.js", "level": "Advanced", "years": 2 },
+    { "name": "React", "level": "Advanced", "years": 2 },
+    { "name": "TypeScript", "level": "Advanced", "years": 3 },
+    { "name": "Tailwind CSS", "level": "Advanced", "years": 2 }
+  ],
+  "order": 2
+}

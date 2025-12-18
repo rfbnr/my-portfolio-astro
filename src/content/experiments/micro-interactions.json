@@ -1,0 +1,76 @@
+{
+  "title": "Micro-Interaction Library",
+  "description": "Collection of reusable micro-interactions for Flutter apps.",
+  "tags": ["UI", "Animation", "Components", "Open Source"],
+  "type": "open-source",
+  "icon": "Lightbulb",
+  "links": {
+    "demo": "#",
+    "github": "https://github.com/ridwanfar/micro-interactions"
+  },
+  "order": 6,
+
+  "status": "completed",
+  "date": "December 2024",
+  "motivation": "Small animations like button presses, loading states, and success feedback make apps feel polished. I collected my best micro-interactions into a reusable library.",
+
+  "approach": {
+    "description": "Curated and refined micro-interactions from production apps into a cohesive, themeable library.",
+    "steps": [
+      {
+        "title": "Collection",
+        "description": "Gathered micro-interactions from my projects and analyzed popular apps for inspiration."
+      },
+      {
+        "title": "Standardization",
+        "description": "Created consistent API patterns and theming support across all components."
+      },
+      {
+        "title": "Performance Audit",
+        "description": "Optimized all animations for 60fps on low-end devices."
+      },
+      {
+        "title": "Documentation",
+        "description": "Built interactive documentation with live examples and copy-paste code."
+      }
+    ]
+  },
+
+  "techStack": [
+    { "name": "Flutter", "role": "Framework" },
+    { "name": "AnimationController", "role": "Animation" },
+    { "name": "Storybook", "role": "Documentation" },
+    { "name": "GitHub Actions", "role": "CI/CD" }
+  ],
+
+  "learnings": {
+    "worked": [
+      "Consistent easing curves create cohesive feel",
+      "Theme-able colors and durations increase adoption",
+      "Live examples in docs reduce friction"
+    ],
+    "didntWork": [
+      "Initial naming conventions were inconsistent",
+      "Some animations conflicted with parent widgets"
+    ]
+  },
+
+  "keyInsights": [
+    {
+      "title": "Delight is in Details",
+      "description": "Users notice when apps feel 'premium' even if they can't explain why."
+    },
+    {
+      "title": "Accessibility First",
+      "description": "All animations respect reduce-motion settings for inclusive design."
+    },
+    {
+      "title": "Open Source Hygiene",
+      "description": "Good README, examples, and changelogs are as important as code."
+    }
+  ],
+
+  "futurePlans": "Growing the library with:\n\n• More component types (loaders, reveals, morphs)\n• Figma design tokens sync\n• Per-component performance benchmarks\n• Community contribution guidelines",
+
+  "codeHighlight": "// Bounce button interaction\nclass BounceButton extends StatefulWidget {\n  @override\n  Widget build(BuildContext context) {\n    return GestureDetector(\n      onTapDown: (_) => controller.forward(),\n      onTapUp: (_) => controller.reverse(),\n      child: AnimatedBuilder(\n        animation: controller,\n        builder: (_, child) => Transform.scale(\n          scale: 1 - (controller.value * 0.1),\n          child: child,\n        ),\n        child: widget.child,\n      ),\n    );\n  }\n}"
+}

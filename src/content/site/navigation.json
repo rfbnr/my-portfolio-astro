@@ -1,0 +1,28 @@
+{
+  "navLinks": [
+    { "href": "/", "label": "Home" },
+    { "href": "/projects", "label": "Projects" },
+    { "href": "/about", "label": "About" },
+    { "href": "/experiments", "label": "R&D" },
+    { "href": "/contact", "label": "Contact" }
+  ],
+  "footerLinks": [
+    {
+      "title": "Navigation",
+      "links": [
+        { "href": "/", "label": "Home" },
+        { "href": "/projects", "label": "Projects" },
+        { "href": "/about", "label": "About" },
+        { "href": "/experiments", "label": "R&D" }
+      ]
+    },
+    {
+      "title": "Resources",
+      "links": [
+        { "href": "/contact", "label": "Contact" },
+        { "href": "#", "label": "Resume/CV" },
+        { "href": "#", "label": "Blog" }
+      ]
+    }
+  ]
+}

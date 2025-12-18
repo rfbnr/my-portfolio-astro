@@ -1,0 +1,43 @@
+{
+  "title": "CRM Dashboard",
+  "category": "web",
+  "tech": ["Next.js", "TypeScript", "PostgreSQL", "Chart.js", "Tailwind CSS"],
+  "description": "Interactive customer relationship management dashboard with advanced analytics and reporting capabilities.",
+  "image": "/projects/crm.jpg",
+  "featured": true,
+  "order": 3,
+
+  "summary": "Interactive customer relationship management dashboard with advanced analytics and reporting capabilities.",
+  "role": "Full Stack Developer",
+  "timeline": "Mar 2023 - Aug 2023",
+  "liveUrl": "#",
+  "repoUrl": "#",
+
+  "challenges": [
+    {
+      "challenge": "Complex Data Visualization",
+      "solution": "Built custom Chart.js components with dynamic data aggregation to display sales trends, customer segments, and pipeline analytics."
+    },
+    {
+      "challenge": "Real-time Updates",
+      "solution": "Implemented WebSocket connections for live dashboard updates when team members interact with customers."
+    },
+    {
+      "challenge": "Performance Optimization",
+      "solution": "Used React Query for intelligent caching and incremental data loading, reducing initial load time by 50%."
+    },
+    {
+      "challenge": "Role-based Views",
+      "solution": "Designed flexible dashboard layouts that adapt based on user roles (sales, manager, executive)."
+    }
+  ],
+
+  "impactMetrics": [
+    { "label": "Active Users", "value": "200+" },
+    { "label": "Load Time", "value": "<2s" },
+    { "label": "Reports Generated", "value": "1K/mo" },
+    { "label": "User Retention", "value": "95%" }
+  ],
+
+  "outcome": "The CRM Dashboard has become the central hub for sales team operations, providing real-time insights that have improved decision-making and increased sales conversion rates by 20%."
+}

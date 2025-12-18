@@ -1,0 +1,76 @@
+{
+  "title": "API Mock Generator",
+  "description": "CLI tool that generates mock API responses from OpenAPI specs for testing.",
+  "tags": ["CLI", "Testing", "OpenAPI", "Mock"],
+  "type": "tool",
+  "icon": "Code2",
+  "links": {
+    "github": "https://github.com/ridwanfar/api-mocker",
+    "demo": "https://api-mocker.ridwanfar.com"
+  },
+  "order": 5,
+
+  "status": "completed",
+  "date": "July 2024",
+  "motivation": "Waiting for backend APIs blocks frontend development. I wanted a tool that generates realistic mock data from API specs so development can proceed in parallel.",
+
+  "approach": {
+    "description": "Built a CLI tool in Dart that parses OpenAPI specs and generates a mock server with realistic fake data.",
+    "steps": [
+      {
+        "title": "OpenAPI Parser",
+        "description": "Built a robust parser for OpenAPI 3.0 specs supporting all common schema types."
+      },
+      {
+        "title": "Data Generation",
+        "description": "Integrated Faker library with smart type inference for realistic data."
+      },
+      {
+        "title": "Mock Server",
+        "description": "Created a lightweight HTTP server that serves generated responses with configurable latency."
+      },
+      {
+        "title": "CLI Interface",
+        "description": "Designed intuitive CLI with watch mode for spec changes."
+      }
+    ]
+  },
+
+  "techStack": [
+    { "name": "Dart", "role": "Language" },
+    { "name": "OpenAPI Parser", "role": "Spec Parsing" },
+    { "name": "Faker", "role": "Data Generation" },
+    { "name": "Shelf", "role": "HTTP Server" }
+  ],
+
+  "learnings": {
+    "worked": [
+      "Type inference from property names creates realistic data",
+      "Cached responses improve consistency during testing",
+      "Watch mode speeds up iterative development"
+    ],
+    "didntWork": [
+      "Complex $ref resolution had edge cases that needed handling",
+      "Some OpenAPI extensions weren't widely documented"
+    ]
+  },
+
+  "keyInsights": [
+    {
+      "title": "Specs Are Contracts",
+      "description": "Good OpenAPI specs benefit both frontend and backend teams equally."
+    },
+    {
+      "title": "Realistic Data Matters",
+      "description": "Edge cases in data (empty arrays, long strings) catch UI bugs early."
+    },
+    {
+      "title": "CLI UX",
+      "description": "Good CLI tools have sensible defaults but allow customization."
+    }
+  ],
+
+  "futurePlans": "Considering adding:\n\n• Docker image for team sharing\n• Scenario mode for testing different states\n• Recording mode to capture real API responses\n• VS Code extension for inline preview",
+
+  "codeHighlight": "// Generate mock from schema\nMap<String, dynamic> generateMock(Schema schema) {\n  return switch (schema.type) {\n    'string' => faker.lorem.word(),\n    'integer' => faker.randomGenerator.integer(1000),\n    'boolean' => faker.randomGenerator.boolean(),\n    'array' => List.generate(3, (_) => \n      generateMock(schema.items)),\n    'object' => Map.fromEntries(\n      schema.properties.entries.map((e) => \n        MapEntry(e.key, generateMock(e.value))\n      )\n    ),\n    _ => null,\n  };\n}"
+}

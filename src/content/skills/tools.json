@@ -1,0 +1,12 @@
+{
+  "category": "tools",
+  "categoryTitle": "Tools",
+  "categoryIcon": "BookOpen",
+  "skills": [
+    { "name": "Git", "level": "Expert", "years": 5 },
+    { "name": "Docker", "level": "Intermediate", "years": 2 },
+    { "name": "Figma", "level": "Familiar", "years": 2 },
+    { "name": "VS Code", "level": "Expert", "years": 5 }
+  ],
+  "order": 4
+}

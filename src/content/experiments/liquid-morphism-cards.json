@@ -1,0 +1,78 @@
+{
+  "title": "Liquid Morphism Cards",
+  "description": "Exploring fluid animations and glassmorphism effects in Flutter using custom painters and shaders for next-generation UI experiences.",
+  "tags": ["UI", "Animation", "Flutter", "Custom Painter", "Shaders"],
+  "type": "experiment",
+  "icon": "Sparkles",
+  "links": {
+    "demo": "https://example.com/demo",
+    "github": "https://github.com/ridwanfar/liquid-morphism"
+  },
+  "order": 1,
+
+  "status": "completed",
+  "date": "October 2024",
+  "motivation": "Modern UI design has evolved beyond flat surfaces. Users expect interfaces that feel alive, responsive, and delightful. I wanted to explore how far we can push Flutter's rendering capabilities to create truly premium visual experiences.\n\nThe goal wasn't just to create 'cool effects' — it was to understand the technical foundations of high-performance animations and how they can be implemented in a way that's maintainable and performant on real devices.",
+
+  "approach": {
+    "description": "I took a bottom-up approach, starting with Flutter's CustomPainter API to understand low-level rendering before abstracting into reusable components.",
+    "steps": [
+      {
+        "title": "Research & Inspiration",
+        "description": "Studied glassmorphism trends, analyzed implementations in SwiftUI and CSS, collected 50+ UI references from Dribbble and Behance."
+      },
+      {
+        "title": "Core Engine Development",
+        "description": "Built a custom rendering engine using CustomPainter with support for real-time blur, gradient mesh, and noise textures."
+      },
+      {
+        "title": "Animation System",
+        "description": "Implemented a physics-based animation controller that responds to touch velocity and device motion sensors."
+      },
+      {
+        "title": "Performance Optimization",
+        "description": "Used RepaintBoundary, cached paint objects, and implemented LOD (Level of Detail) system for older devices."
+      }
+    ]
+  },
+
+  "techStack": [
+    { "name": "Flutter", "role": "Framework" },
+    { "name": "Custom Painter", "role": "Rendering" },
+    { "name": "Rive", "role": "Complex Animations" },
+    { "name": "Sensors Plus", "role": "Device Motion" }
+  ],
+
+  "learnings": {
+    "worked": [
+      "CustomPainter with cached Paint objects achieved 60fps on mid-range devices",
+      "Physics-based animations feel more natural than predefined curves",
+      "Layer separation (blur layer, content layer, glow layer) simplified debugging",
+      "Using device sensors for subtle parallax creates premium feel without effort"
+    ],
+    "didntWork": [
+      "Real-time shader compilation caused jank on first render — solved with warm-up",
+      "Heavy blur on full-screen elements dropped to 30fps — needed LOD fallback",
+      "Complex gradient meshes increased GPU memory significantly on older devices"
+    ]
+  },
+
+  "keyInsights": [
+    {
+      "title": "Performance vs Aesthetics Trade-off",
+      "description": "Premium effects are possible, but require graceful degradation. Always have a simpler fallback for lower-end devices."
+    },
+    {
+      "title": "Flutter's Hidden Power",
+      "description": "Most developers use pre-built widgets, but CustomPainter unlocks near-native rendering performance with full control."
+    },
+    {
+      "title": "Motion Design Principles",
+      "description": "Good animation isn't about flashy effects — it's about guiding user attention and providing feedback."
+    }
+  ],
+
+  "futurePlans": "This experiment has potential to become a proper open-source package. I'm considering:\n\n• Publishing as a Flutter package with customizable presets\n• Adding accessibility options (reduce motion support)\n• Creating a visual editor for designing liquid effects\n• Exploring integration with Impeller (Flutter's new rendering engine)",
+
+  "codeHighlight": "// Core blur effect implementation\nclass LiquidPainter extends CustomPainter {\n  final double blurRadius;\n  final List<Color> gradientColors;\n  \n  @override\n  void paint(Canvas canvas, Size size) {\n    final paint = Paint()\n      ..shader = RadialGradient(\n        colors: gradientColors,\n      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))\n      ..maskFilter = MaskFilter.blur(BlurStyle.normal, blurRadius);\n    \n    canvas.drawRRect(\n      RRect.fromRectAndRadius(\n        Rect.fromLTWH(0, 0, size.width, size.height),\n        Radius.circular(24),\n      ),\n      paint,\n    );\n  }\n}"
+}

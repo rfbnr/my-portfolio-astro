@@ -1,0 +1,43 @@
+{
+  "title": "Animation Playground",
+  "category": "experimental",
+  "tech": ["Flutter", "Rive", "Lottie", "Custom Painter"],
+  "description": "Experimental project exploring advanced Flutter animations and micro-interactions for enhanced UX.",
+  "image": "/projects/animation.jpg",
+  "featured": false,
+  "order": 6,
+
+  "summary": "Experimental project exploring advanced Flutter animations and micro-interactions for enhanced UX.",
+  "role": "R&D Developer",
+  "timeline": "Personal Project - 2024",
+  "liveUrl": "#",
+  "repoUrl": "https://github.com/ridwanfar/animation-playground",
+
+  "challenges": [
+    {
+      "challenge": "60fps Performance",
+      "solution": "Optimized paint calls with cached Paint objects and RepaintBoundary for smooth 60fps animations."
+    },
+    {
+      "challenge": "Physics-based Motion",
+      "solution": "Implemented spring animations and velocity-based gestures for natural-feeling interactions."
+    },
+    {
+      "challenge": "Complex Transitions",
+      "solution": "Built custom page transitions using Hero animations with morphing effects."
+    },
+    {
+      "challenge": "Accessibility",
+      "solution": "Added reduce-motion support that gracefully degrades animations for users who prefer less motion."
+    }
+  ],
+
+  "impactMetrics": [
+    { "label": "Animation Types", "value": "20+" },
+    { "label": "Performance", "value": "60fps" },
+    { "label": "GitHub Stars", "value": "50+" },
+    { "label": "Reusable Components", "value": "15" }
+  ],
+
+  "outcome": "This playground has become a personal reference library for advanced animations, with several components being reused across production projects to enhance user experience."
+}

@@ -1,0 +1,43 @@
+{
+  "title": "SSO Authentication System",
+  "category": "enterprise",
+  "tech": ["Laravel", "OAuth2", "Redis", "Docker", "PostgreSQL"],
+  "description": "Centralized single sign-on system supporting multiple authentication providers and enterprise-grade security.",
+  "image": "/projects/sso.jpg",
+  "featured": false,
+  "order": 5,
+
+  "summary": "Centralized single sign-on system supporting multiple authentication providers and enterprise-grade security.",
+  "role": "Backend Developer",
+  "timeline": "Apr 2022 - Aug 2022",
+  "liveUrl": "#",
+  "repoUrl": "#",
+
+  "challenges": [
+    {
+      "challenge": "Multi-provider Auth",
+      "solution": "Built OAuth2/OIDC adapters for Google, Microsoft, and custom LDAP providers with unified API."
+    },
+    {
+      "challenge": "Session Management",
+      "solution": "Implemented Redis-based session storage with distributed token validation for scalability."
+    },
+    {
+      "challenge": "Security Hardening",
+      "solution": "Added MFA support, rate limiting, IP whitelisting, and comprehensive audit logging."
+    },
+    {
+      "challenge": "Token Refresh",
+      "solution": "Designed seamless token rotation with sliding expiration to balance security and UX."
+    }
+  ],
+
+  "impactMetrics": [
+    { "label": "Apps Connected", "value": "15+" },
+    { "label": "Auth Requests", "value": "100K/day" },
+    { "label": "Uptime", "value": "99.99%" },
+    { "label": "Security Score", "value": "A+" }
+  ],
+
+  "outcome": "The SSO system has unified authentication across 15+ enterprise applications, eliminating password fatigue and reducing support tickets related to login issues by 80%."
+}

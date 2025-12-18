@@ -1,0 +1,43 @@
+{
+  "title": "E-Commerce Mobile App",
+  "category": "mobile",
+  "tech": ["Flutter", "Firebase", "Stripe", "Algolia", "GetX"],
+  "description": "Full-featured e-commerce application with real-time inventory, payment processing, and personalized recommendations.",
+  "image": "/projects/ecommerce.jpg",
+  "featured": false,
+  "order": 4,
+
+  "summary": "Full-featured e-commerce application with real-time inventory, payment processing, and personalized recommendations.",
+  "role": "Mobile Developer",
+  "timeline": "Oct 2022 - Mar 2023",
+  "liveUrl": "#",
+  "repoUrl": "#",
+
+  "challenges": [
+    {
+      "challenge": "Payment Integration",
+      "solution": "Integrated Stripe and local payment gateways with secure tokenization and 3D Secure authentication."
+    },
+    {
+      "challenge": "Product Search",
+      "solution": "Implemented Algolia for instant search with typo tolerance, filters, and faceted navigation."
+    },
+    {
+      "challenge": "Cart Sync",
+      "solution": "Built a cart synchronization system that persists across devices and sessions using Firebase."
+    },
+    {
+      "challenge": "Push Notifications",
+      "solution": "Designed targeted push notification campaigns for order updates, promotions, and abandoned carts."
+    }
+  ],
+
+  "impactMetrics": [
+    { "label": "Downloads", "value": "10K+" },
+    { "label": "Conversion Rate", "value": "3.5%" },
+    { "label": "Cart Recovery", "value": "+40%" },
+    { "label": "App Rating", "value": "4.6/5" }
+  ],
+
+  "outcome": "The e-commerce app has successfully launched with strong user adoption, featuring seamless shopping experience and reliable payment processing that has driven consistent monthly revenue growth."
+}

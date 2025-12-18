@@ -1,0 +1,41 @@
+{
+  "socialLinks": [
+    {
+      "href": "https://github.com/ridwanfar",
+      "icon": "Github",
+      "label": "GitHub",
+      "username": "@ridwanfar"
+    },
+    {
+      "href": "https://linkedin.com/in/ridwanfar",
+      "icon": "Linkedin",
+      "label": "LinkedIn",
+      "username": "Ridwan Febnur Asri"
+    },
+    {
+      "href": "https://twitter.com/ridwanfar",
+      "icon": "Twitter",
+      "label": "Twitter",
+      "username": "@ridwanfar"
+    },
+    {
+      "href": "mailto:hello@ridwan.dev",
+      "icon": "Mail",
+      "label": "Email",
+      "username": "hello@ridwan.dev"
+    }
+  ],
+  "contactInfo": [
+    { "icon": "Mail", "label": "Email", "value": "hello@ridwan.dev" },
+    {
+      "icon": "MapPin",
+      "label": "Location",
+      "value": "Indonesia (Remote-friendly)"
+    },
+    {
+      "icon": "Calendar",
+      "label": "Availability",
+      "value": "Open for new projects"
+    }
+  ]
+}

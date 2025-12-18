@@ -1,0 +1,12 @@
+{
+  "category": "mobile",
+  "categoryTitle": "Mobile",
+  "categoryIcon": "Code2",
+  "skills": [
+    { "name": "Flutter", "level": "Expert", "years": 4 },
+    { "name": "Dart", "level": "Expert", "years": 4 },
+    { "name": "Android", "level": "Advanced", "years": 3 },
+    { "name": "iOS", "level": "Intermediate", "years": 2 }
+  ],
+  "order": 1
+}

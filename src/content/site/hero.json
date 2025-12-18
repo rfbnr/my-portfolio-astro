@@ -1,0 +1,16 @@
+{
+  "techStack": [
+    { "label": "Flutter", "icon": "🎯" },
+    { "label": "Dart", "icon": "💎" },
+    { "label": "Next.js", "icon": "▲" },
+    { "label": "Laravel", "icon": "🔺" },
+    { "label": "Firebase", "icon": "🔥" },
+    { "label": "CI/CD", "icon": "⚙️" }
+  ],
+  "heroMetrics": [
+    { "icon": "Briefcase", "value": "5+", "label": "Years Experience" },
+    { "icon": "Code2", "value": "30+", "label": "Projects Completed" },
+    { "icon": "Layers", "value": "Mobile & Web", "label": "Area Focus" },
+    { "icon": "Sparkles", "value": "Open", "label": "For Collaboration" }
+  ]
+}
