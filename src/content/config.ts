@@ -193,6 +193,7 @@ const siteCollection = defineCollection({
     name: z.string().optional(),
     fullName: z.string().optional(),
     title: z.string().optional(),
+    titlePage: z.string().optional(),
     description: z.string().optional(),
     email: z.string().optional(),
     location: z.string().optional(),

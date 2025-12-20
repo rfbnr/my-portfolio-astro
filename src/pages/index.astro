@@ -2,11 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProjectsGrid } from "@/components/sections/ProjectsGrid";
-import { getProjects, getHeroData, projectCategories } from "@/lib/content";
+import { getProjects, getHeroData, projectCategories, getSiteConfig } from "@/lib/content";
 
 // Fetch data from content collections
 const projects = await getProjects();
 const heroData = await getHeroData();
+const siteConfig = await getSiteConfig();
 ---
 
 <Layout>
@@ -14,6 +15,7 @@ const heroData = await getHeroData();
     client:visible 
     techStack={heroData.techStack} 
     heroMetrics={heroData.heroMetrics} 
+    siteConfig={siteConfig}
   />
   <ProjectsGrid 
     client:visible 

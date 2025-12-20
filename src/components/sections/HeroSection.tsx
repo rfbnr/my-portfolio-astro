@@ -24,7 +24,7 @@ import {
   Magnetic,
 } from "@/components/motion";
 import type { LucideIcon } from "lucide-react";
-import type { HeroTechStack, HeroMetric, HeroSectionProps } from "@/types";
+import type { HeroSectionProps } from "@/types";
 
 // Icon mapping for dynamic icon loading (client-side)
 const iconMap: Record<string, LucideIcon> = {
@@ -38,7 +38,11 @@ const iconMap: Record<string, LucideIcon> = {
   Lightbulb,
 };
 
-export function HeroSection({ techStack, heroMetrics }: HeroSectionProps) {
+export function HeroSection({
+  techStack,
+  heroMetrics,
+  siteConfig,
+}: HeroSectionProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
       <LiquidBackground />
@@ -52,7 +56,7 @@ export function HeroSection({ techStack, heroMetrics }: HeroSectionProps) {
               <StaggerItem>
                 <Badge variant="tech" className="mb-4">
                   <span className="w-2 h-2 bg-accent-emerald rounded-full animate-pulse" />
-                  Available for new projects
+                  {siteConfig.availability ?? "Available for new projects"}
                 </Badge>
               </StaggerItem>
 
@@ -67,9 +71,8 @@ export function HeroSection({ techStack, heroMetrics }: HeroSectionProps) {
               {/* Subtitle */}
               <StaggerItem>
                 <p className="text-lg md:text-xl text-text-secondary max-w-lg">
-                  Mobile-first engineer focused on functional, elegant, and
-                  production-ready solutions. Specializing in Flutter &
-                  cross-platform development.
+                  {siteConfig.description ??
+                    "Mobile-first engineer focused on functional, elegant, and production-ready solutions. Specializing in Flutter & cross-platform development."}
                 </p>
               </StaggerItem>
 

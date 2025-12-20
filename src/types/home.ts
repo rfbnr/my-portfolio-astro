@@ -11,6 +11,7 @@ export interface SiteConfig {
   name?: string;
   fullName?: string;
   title?: string;
+  titlePage?: string;
   description?: string;
   email?: string;
   location?: string;
@@ -24,6 +25,7 @@ export interface SiteConfig {
 export interface HeroSectionProps {
   techStack: HeroTechStack[];
   heroMetrics: HeroMetric[];
+  siteConfig: SiteConfig;
 }
 
 export interface HeroTechStack {
