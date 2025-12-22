@@ -75,3 +75,16 @@ export type {
   ParallaxImageProps,
   StaggerContainerProps,
 } from "./motion";
+
+// UI types
+export type {
+  ButtonProps,
+  BadgeProps,
+  TechBadgeProps,
+  CardProps,
+  MetricCardProps,
+  PaginationProps,
+  SectionHeaderProps,
+  GlowTextProps,
+  GradientTextProps,
+} from "./ui";
