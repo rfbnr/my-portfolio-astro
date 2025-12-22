@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
-import type { JSX } from "react";
 import { twMerge } from "tailwind-merge";
+
+export const ITEMS_PER_PAGE = 6;
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

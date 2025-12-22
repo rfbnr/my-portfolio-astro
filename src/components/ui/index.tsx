@@ -4,6 +4,9 @@ import { motion, type HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
+// Re-export Pagination component
+export { Pagination } from "./Pagination";
+
 // ========================================
 // BUTTON COMPONENT
 // ========================================
