@@ -211,7 +211,7 @@ export default function ExperimentDetailPage({
       <Divider />
 
       {/* Code Highlight Section */}
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="section-container">
           <FadeIn>
             <div className="flex items-center gap-3 mb-6">
@@ -237,7 +237,7 @@ export default function ExperimentDetailPage({
             </Card>
           </FadeIn>
         </div>
-      </section>
+      </section> */}
 
       <Divider />
 

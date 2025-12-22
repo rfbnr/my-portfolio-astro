@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   ExternalLink,
   Github,
@@ -15,7 +16,7 @@ import {
   Rocket,
   Palette,
 } from "lucide-react";
-import { Badge, Card, Button } from "@/components/ui";
+import { Badge, Card, Button, Pagination } from "@/components/ui";
 import {
   FadeIn,
   StaggerContainer,
@@ -23,7 +24,8 @@ import {
   LiquidBackground,
 } from "@/components/motion";
 import type { LucideIcon } from "lucide-react";
-import type { Experiment, ExperimentsPageProps } from "@/types";
+import type { ExperimentsPageProps } from "@/types";
+import { ITEMS_PER_PAGE } from "@/lib/utils";
 
 // Icon mapping for dynamic icon loading (client-side)
 const iconMap: Record<string, LucideIcon> = {
@@ -43,6 +45,22 @@ export default function ExperimentsPage({
   experiments,
   typeColors,
 }: ExperimentsPageProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(experiments.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedExperiments = experiments.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of grid section
+    // window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="relative">
       <LiquidBackground />
@@ -72,8 +90,10 @@ export default function ExperimentsPage({
       {/* Experiments Grid */}
       <section className="py-12">
         <div className="section-container">
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {experiments.map((experiment) => (
+          <StaggerContainer
+            key={currentPage}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {paginatedExperiments.map((experiment) => (
               <StaggerItem key={experiment.slug}>
                 <a
                   href={`/experiments/${experiment.slug}`}
@@ -132,6 +152,14 @@ export default function ExperimentsPage({
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          {/* Pagination */}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            className="mt-12"
+          />
         </div>
       </section>
 
