@@ -77,7 +77,7 @@ export default function AboutPage({
 
                       {/* Professional photo - replace with actual photo */}
                       <img
-                        src="/images/avatar-hoodie.png"
+                        src="/images/avatar/avatar-hoodie.png"
                         alt="Ridwan Febnur Asri"
                         className="absolute inset-0 w-full h-full object-cover"
                       />

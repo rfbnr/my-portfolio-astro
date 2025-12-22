@@ -131,7 +131,7 @@ export function HeroSection({
 
                       {/* Avatar illustration */}
                       <img
-                        src="/images/avatar-hoodie.png"
+                        src="/images/avatar/avatar-hoodie.png"
                         alt="Developer Avatar"
                         className="absolute inset-0 w-full h-full object-cover"
                       />

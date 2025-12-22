@@ -9,8 +9,8 @@
   "showcase": [
     "/images/projects/example-web.png",
     "/images/projects/example-mobile.png",
-    "/images/avatar.png",
-    "/images/avatar-hoodie.png"
+    "/images/avatar/avatar.png",
+    "/images/avatar/avatar-hoodie.png"
   ],
 
   "summary": "Comprehensive human resource information system handling employee management, attendance, payroll, and performance reviews for 5000+ users.",

@@ -9,8 +9,8 @@
   "showcase": [
     "/images/projects/example-mobile.png",
     "/images/projects/example-web.png",
-    "/images/avatar.png",
-    "/images/avatar-hoodie.png"
+    "/images/avatar/avatar.png",
+    "/images/avatar/avatar-hoodie.png"
   ],
 
   "summary": "Centralized single sign-on system supporting multiple authentication providers and enterprise-grade security.",
