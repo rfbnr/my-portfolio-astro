@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Briefcase } from "lucide-react";
-import { Badge, Card, Button } from "@/components/ui";
+import { Badge, Card, Button, Pagination } from "@/components/ui";
 import {
   FadeIn,
   StaggerContainer,
   LiquidBackground,
 } from "@/components/motion";
-import { cn } from "@/lib/utils";
+import { cn, ITEMS_PER_PAGE } from "@/lib/utils";
 import type { ProjectsPageProps } from "@/types";
 import { ProjectCard } from "./ProjectsGrid";
 
@@ -18,10 +18,30 @@ export default function ProjectsPage({
   categories,
 }: ProjectsPageProps) {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredProjects = projects.filter(
     (project) => activeFilter === "all" || project.category === activeFilter,
   );
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedProjects = filteredProjects.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
+
+  // Reset to page 1 when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of grid section
+    // window.scrollTo({ top: 400, behavior: "smooth" });
+  };
 
   return (
     <div className="relative">
@@ -76,9 +96,11 @@ export default function ProjectsPage({
       {/* Projects Grid */}
       <section className="py-12">
         <div className="section-container">
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer
+            key={`${activeFilter}-${currentPage}`}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
+              {paginatedProjects.map((project) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
@@ -87,6 +109,14 @@ export default function ProjectsPage({
               ))}
             </AnimatePresence>
           </StaggerContainer>
+
+          {/* Pagination */}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+            className="mt-12"
+          />
         </div>
       </section>
 

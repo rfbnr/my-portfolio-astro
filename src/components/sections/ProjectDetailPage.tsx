@@ -141,7 +141,7 @@ export default function ProjectDetailPage({
                 </Card>
 
                 {/* Impact Metrics */}
-                <Card className="space-y-4">
+                {/* <Card className="space-y-4">
                   <div className="flex items-center gap-3 mb-2">
                     <TrendingUp size={20} className="text-accent-emerald" />
                     <p className="font-medium text-text-primary">
@@ -163,7 +163,7 @@ export default function ProjectDetailPage({
                       </div>
                     ))}
                   </div>
-                </Card>
+                </Card> */}
               </div>
             </FadeIn>
 
